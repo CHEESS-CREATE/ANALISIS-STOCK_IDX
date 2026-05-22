@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAHAMPRO - Premium Screener & Bandarmology</title>
+    <title>SAHAMPRO - Premium System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -11,149 +11,170 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
 </head>
-<body class="bg-[#0f172a] text-gray-200 antialiased selection:bg-emerald-500 selection:text-white">
+<body class="bg-[#0f172a] text-gray-200 antialiased">
 
-    <nav class="border-b border-gray-800 bg-[#1e293b]/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4 flex justify-between items-center max-w-7xl mx-auto w-full">
-        <div class="flex items-center space-x-2">
-            <div class="bg-emerald-500/10 p-2 rounded-xl border border-emerald-500/20">
-                <i class="fa-solid fa-gem text-emerald-400 text-lg"></i>
-            </div>
-            <span class="text-xl font-black tracking-wider text-white">SAHAM<span class="text-emerald-400">PRO</span></span>
-        </div>
-        <a href="#pricing" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-lg shadow-emerald-600/20">
-            Mulai Langganan
-        </a>
-    </nav>
-
-    <header class="max-w-5xl mx-auto px-6 pt-16 pb-20 text-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-emerald-500/5 via-transparent to-transparent pointer-events-none"></div>
-        
-        <span class="inline-flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold px-4 py-2 rounded-full mb-6">
-            <i class="fa-solid fa-circle-check animate-pulse"></i>
-            <span>Screener Real-Time & Data Akurat</span>
-        </span>
-        
-        <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight leading-tight max-w-4xl mx-auto">
-            Ikuti Jejak <span class="text-emerald-400">Big Player</span> Dengan Data Fundamental & Bandarmologi
-        </h1>
-        
-        <p class="text-base md:text-lg text-gray-400 mt-6 max-w-2xl mx-auto leading-relaxed">
-            Hentikan berspekulasi buta di bursa efek. Gunakan dashboard pintar untuk menyaring emiten undervalued, memantau akumulasi bandar, dan mengamankan profit konsisten.
-        </p>
-        
-        <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
-            <a href="#pricing" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-8 py-4 rounded-xl shadow-xl shadow-emerald-600/20 transition flex items-center justify-center space-x-3">
-                <span>Lihat Paket Fitur</span>
-                <i class="fa-solid fa-arrow-right text-sm"></i>
-            </a>
-            <a href="#features" class="w-full sm:w-auto bg-slate-800/80 border border-gray-700 hover:bg-slate-800 text-gray-300 font-bold px-8 py-4 rounded-xl transition flex items-center justify-center">
-                Pelajari Metode
-            </a>
-        </div>
-    </header>
-
-    <section id="features" class="max-w-6xl mx-auto px-6 py-12 border-t border-gray-800/60">
-        <div class="text-center mb-16">
-            <h2 class="text-2xl md:text-3xl font-black text-white">Kenapa Harus Menggunakan SAHAMPRO?</h2>
-            <p class="text-sm text-gray-400 mt-2">Tiga pilar analisis utama yang akan mengubah gaya trading Anda.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-[#1e293b]/40 border border-gray-800 p-8 rounded-3xl relative group hover:border-emerald-500/30 transition">
-                <div class="bg-emerald-500/10 w-12 h-12 rounded-xl border border-emerald-500/20 flex items-center justify-center mb-6">
-                    <i class="fa-solid fa-chart-pie text-emerald-400 text-xl"></i>
+    <div id="public-landing-view" class="block">
+        <nav class="border-b border-gray-800 bg-[#1e293b]/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4 flex justify-between items-center max-w-7xl mx-auto w-full">
+            <div class="flex items-center space-x-2">
+                <div class="bg-emerald-500/10 p-2 rounded-xl border border-emerald-500/20">
+                    <i class="fa-solid fa-gem text-emerald-400 text-lg"></i>
                 </div>
-                <h3 class="text-lg font-bold text-white mb-2">Analisis Fundamental</h3>
-                <p class="text-sm text-gray-400 leading-relaxed">Menyaring emiten bernilai tinggi secara instan lewat metrik krusial seperti PER, PBV, ROE, hingga Dividend Yield terkini.</p>
+                <span class="text-xl font-black tracking-wider text-white">SAHAM<span class="text-emerald-400">PRO</span></span>
             </div>
-            <div class="bg-[#1e293b]/40 border border-gray-800 p-8 rounded-3xl relative group hover:border-emerald-500/30 transition">
-                <div class="bg-emerald-500/10 w-12 h-12 rounded-xl border border-emerald-500/20 flex items-center justify-center mb-6">
-                    <i class="fa-solid fa-users-viewfinder text-emerald-400 text-xl"></i>
-                </div>
-                <h3 class="text-lg font-bold text-white mb-2">Radar Bandarmologi</h3>
-                <p class="text-sm text-gray-400 leading-relaxed">Mendeteksi aliran dana rahasia milik institusi besar. Ketahui kapan market maker melakukan Big Accumulation atau Big Distribution.</p>
-            </div>
-            <div class="bg-[#1e293b]/40 border border-gray-800 p-8 rounded-3xl relative group hover:border-emerald-500/30 transition">
-                <div class="bg-emerald-500/10 w-12 h-12 rounded-xl border border-emerald-500/20 flex items-center justify-center mb-6">
-                    <i class="fa-solid fa-bolt text-emerald-400 text-xl"></i>
-                </div>
-                <h3 class="text-lg font-bold text-white mb-2">Screener Undervalued</h3>
-                <p class="text-sm text-gray-400 leading-relaxed">Dapatkan notifikasi otomatis daftar emiten sehat berharga murah (diskon bursa) sebelum didahului oleh para ritel lain.</p>
-            </div>
-        </div>
-    </section>
+            <a href="#pricing" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition">Mulai Langganan</a>
+        </nav>
 
-    <section id="pricing" class="max-w-5xl mx-auto px-6 py-20 border-t border-gray-800/60">
-        <div class="text-center mb-16">
-            <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-4 py-1.5 rounded-full border border-emerald-500/20">Harga Langganan</span>
-            <h2 class="text-3xl md:text-4xl font-black text-white mt-4">Investasi Terbaik Untuk Pertumbuhan Portofolio Anda</h2>
-            <p class="text-sm text-gray-400 mt-2">Pilih paket akses sesuai kebutuhan trading harian Anda.</p>
-        </div>
+        <header class="max-w-5xl mx-auto px-6 pt-16 pb-20 text-center">
+            <span class="inline-flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold px-4 py-2 rounded-full mb-6">
+                <i class="fa-solid fa-circle-check animate-pulse"></i>
+                <span>Screener Real-Time & Data Akurat</span>
+            </span>
+            <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight leading-tight">
+                Ikuti Jejak <span class="text-emerald-400">Big Player</span> Dengan Data Fundamental & Bandarmologi
+            </h1>
+            <p class="text-base md:text-lg text-gray-400 mt-6 max-w-2xl mx-auto">
+                Hentikan berspekulasi buta di bursa efek. Gunakan dashboard pintar untuk menyaring emiten undervalued dan memantau akumulasi bandar.
+            </p>
+            <div class="mt-10 flex justify-center gap-4">
+                <a href="#pricing" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-8 py-4 rounded-xl shadow-xl transition">Lihat Paket Fitur</a>
+            </div>
+        </header>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            <div class="bg-[#1e293b]/50 border border-gray-800 p-8 rounded-3xl relative flex flex-col justify-between hover:border-gray-700 transition">
-                <div>
-                    <h3 class="text-lg font-bold text-white mb-1">Paket Bulanan</h3>
-                    <p class="text-xs text-gray-400 mb-6">Cocok untuk uji coba akurasi sistem</p>
-                    <div class="flex items-baseline space-x-1 mb-6">
-                        <span class="text-3xl font-black text-white">Rp 150.000</span>
-                        <span class="text-xs text-gray-400">/ bulan</span>
+        <section id="pricing" class="max-w-5xl mx-auto px-6 py-16 border-t border-gray-800/60">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                <div class="bg-[#1e293b]/50 border border-gray-800 p-8 rounded-3xl flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Paket Bulanan</h3>
+                        <div class="text-3xl font-black text-white my-4">Rp 150.000<span class="text-xs text-gray-400">/bln</span></div>
+                        <p class="text-sm text-gray-400">Akses data dashboard fundamental premium & analisa pergerakan bandar reguler bursa.</p>
                     </div>
-                    <ul class="space-y-3.5 text-sm text-gray-300 border-t border-gray-800/80 pt-6">
-                        <li class="flex items-center space-x-3"><i class="fa-solid fa-circle-check text-emerald-400 text-xs"></i> <span>Akses Dashboard Fundamental Premium</span></li>
-                        <li class="flex items-center space-x-3"><i class="fa-solid fa-circle-check text-emerald-400 text-xs"></i> <span>Data Bandarmology Akumulasi Real-Time</span></li>
-                        <li class="flex items-center space-x-3"><i class="fa-solid fa-circle-check text-emerald-400 text-xs"></i> <span>Grup Diskusi Ritel Eksklusif</span></li>
-                    </ul>
+                    <button onclick="orderViaWhatsApp('Bulanan', 'Rp 150.000')" class="w-full mt-6 bg-slate-800 hover:bg-slate-700 py-3 rounded-xl font-bold flex items-center justify-center space-x-2">
+                        <i class="fa-brands fa-whatsapp text-emerald-400"></i> <span>Beli Paket</span>
+                    </button>
                 </div>
-                <button onclick="orderViaWhatsApp('Bulanan', 'Rp 150.000')" class="w-full mt-8 bg-slate-800 hover:bg-slate-700 text-white font-bold py-3.5 rounded-xl transition flex items-center justify-center space-x-2">
-                    <i class="fa-brands fa-whatsapp text-emerald-400 text-lg"></i>
-                    <span>Beli Paket Bulanan</span>
-                </button>
-            </div>
-
-            <div class="bg-[#1e293b] border-2 border-emerald-500 p-8 rounded-3xl relative flex flex-col justify-between shadow-2xl shadow-emerald-500/10">
-                <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-emerald-500 text-slate-950 text-[10px] font-black tracking-widest uppercase px-4 py-1 rounded-full shadow-md">Paling Populer & Hemat</span>
-                <div>
-                    <h3 class="text-lg font-bold text-white mb-1">Paket Tahunan</h3>
-                    <p class="text-xs text-emerald-400/80 mb-6">Pilihan mutlak para trader profesional</p>
-                    <div class="flex items-baseline space-x-1 mb-6">
-                        <span class="text-3xl font-black text-white">Rp 1.200.000</span>
-                        <span class="text-xs text-gray-400">/ tahun</span>
+                <div class="bg-[#1e293b] border-2 border-emerald-500 p-8 rounded-3xl flex flex-col justify-between relative">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-slate-950 text-[10px] font-black px-3 py-0.5 rounded-full">Paling Hemat</span>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Paket Tahunan</h3>
+                        <div class="text-3xl font-black text-white my-4">Rp 1.200.000<span class="text-xs text-gray-400">/thn</span></div>
+                        <p class="text-sm text-gray-400">Semua fitur premium terbuka penuh ditambah modul deteksi screener otomatis emiten diskon.</p>
                     </div>
-                    <ul class="space-y-3.5 text-sm text-gray-300 border-t border-gray-800/80 pt-6">
-                        <li class="flex items-center space-x-3"><i class="fa-solid fa-circle-check text-emerald-400 text-xs"></i> <span>Semua Fitur Paket Bulanan Lengkap</span></li>
-                        <li class="flex items-center space-x-3"><i class="fa-solid fa-circle-check text-emerald-400 text-xs"></i> <span>Screener Saham Undervalued Otomatis</span></li>
-                        <li class="flex items-center space-x-3"><i class="fa-solid fa-circle-check text-emerald-400 text-xs"></i> <span>Konsultasi Portofolio Private Premium</span></li>
-                        <li class="flex items-center space-x-3"><i class="fa-solid fa-circle-check text-emerald-400 text-xs"></i> <span>Hemat Hingga 33% Per Tahun</span></li>
-                    </ul>
+                    <button onclick="orderViaWhatsApp('Tahunan', 'Rp 1.200.000')" class="w-full mt-6 bg-emerald-600 hover:bg-emerald-500 py-3 rounded-xl font-extrabold flex items-center justify-center space-x-2">
+                        <i class="fa-brands fa-whatsapp"></i> <span>Beli Paket</span>
+                    </button>
                 </div>
-                <button onclick="orderViaWhatsApp('Tahunan (Best Value)', 'Rp 1.200.000')" class="w-full mt-8 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-3.5 rounded-xl transition shadow-xl shadow-emerald-600/20 flex items-center justify-center space-x-2">
-                    <i class="fa-brands fa-whatsapp text-white text-lg"></i>
-                    <span>Beli Paket Tahunan</span>
-                </button>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <footer class="border-t border-gray-800 bg-[#0f172a] px-6 py-10 text-center max-w-6xl mx-auto w-full text-xs text-gray-500">
-        <p class="mb-2">&copy; 2026 SAHAMPRO. All rights reserved.</p>
-        <p>Disclaimer: Investasi saham mengandung risiko modal. Seluruh data screener digunakan sebagai alat bantu analisis keputusan mandiri.</p>
-    </footer>
+    <div id="owner-dashboard-view" class="hidden flex-col min-h-screen">
+        <nav class="bg-[#1e293b] border-b border-gray-800 px-6 py-4 flex flex-col lg:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="bg-emerald-500/10 p-2 rounded-xl border border-emerald-500/20">
+                    <i class="fa-solid fa-user-shield text-emerald-400 text-xl"></i>
+                </div>
+                <span class="text-xl font-black text-white">OWNER<span class="text-emerald-400">DASHBOARD</span></span>
+            </div>
+            
+            <div class="flex items-center bg-[#0f172a] rounded-xl px-4 py-2 border border-gray-700 w-full max-w-md focus-within:border-emerald-500 transition">
+                <i class="fa-solid fa-magnifying-glass text-emerald-400 mr-3"></i>
+                <input type="text" id="stockInput" value="BBRI" class="bg-transparent text-white font-extrabold focus:outline-none w-full uppercase">
+                <button type="button" id="btnSearchStock" class="bg-emerald-600 text-white font-bold px-4 py-1.5 rounded-lg text-xs hover:bg-emerald-500 ml-2">Cari</button>
+            </div>
+        </nav>
+
+        <main class="flex-1 p-6 max-w-5xl mx-auto w-full">
+            <div class="mb-6">
+                <h1 class="text-2xl font-black text-white">Kondisi Fikal & Fundamental <span class="text-emerald-400" id="stock-title-label">BBRI</span></h1>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                <div class="bg-[#1e293b]/60 border border-gray-800 p-5 rounded-2xl">
+                    <span class="text-[11px] font-bold text-gray-400 uppercase block mb-1">Price to Earnings (PER)</span>
+                    <span id="lbl-per" class="text-xl font-black text-white">--</span>
+                </div>
+                <div class="bg-[#1e293b]/60 border border-gray-800 p-5 rounded-2xl">
+                    <span class="text-[11px] font-bold text-gray-400 uppercase block mb-1">Price to Book Value (PBV)</span>
+                    <span id="lbl-pbv" class="text-xl font-black text-white">--</span>
+                </div>
+                <div class="bg-[#1e293b]/60 border border-gray-800 p-5 rounded-2xl">
+                    <span class="text-[11px] font-bold text-gray-400 uppercase block mb-1">Return on Equity (ROE)</span>
+                    <span id="lbl-roe" class="text-xl font-black text-emerald-400">--</span>
+                </div>
+                <div class="bg-[#1e293b]/60 border border-gray-800 p-5 rounded-2xl">
+                    <span class="text-[11px] font-bold text-gray-400 uppercase block mb-1">Dividend Yield</span>
+                    <span id="lbl-yield" class="text-xl font-black text-blue-400">--</span>
+                </div>
+            </div>
+
+            <div class="bg-[#1e293b]/60 border border-gray-800 p-6 rounded-3xl">
+                <h2 class="text-xs font-bold text-gray-400 uppercase mb-4">Analisis Aliran Dana & Bandarmology</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-[#0f172a] p-5 rounded-xl border border-gray-800">
+                        <span class="text-xs font-bold text-gray-400 block mb-1">STATUS AKUMULASI BANDAR</span>
+                        <span id="lbl-status-bandar" class="text-xl font-black text-white">--</span>
+                    </div>
+                    <div class="bg-[#0f172a] p-5 rounded-xl border border-gray-800">
+                        <span class="text-xs font-bold text-gray-400 block mb-1">AKTIVITAS INVESTOR ASING</span>
+                        <span id="lbl-foreign-flow" class="text-xl font-black text-white">--</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
 
     <script>
+        // ROUTER SYSTEM: Mengecek apakah url diakhiri kata ?mode=owner
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const myMode = urlParams.get('mode');
+
+            if (myMode === 'owner') {
+                document.getElementById('public-landing-view').style.display = 'none';
+                document.getElementById('owner-dashboard-view').style.display = 'flex';
+                updateDashboardData();
+            }
+        };
+
+        // INTEGRASI WHATSAPP ORDER OWNER
         function orderViaWhatsApp(packageName, price) {
-            // Nomor WA tujuan order sesuai pesanan pengguna
             const phoneNumber = "6287832727925"; 
-            
-            // Format isi pesan template otomatis yang rapi dan elegan
-            const message = `Halo Admin SAHAMPRO,\n\nSaya ingin berlangganan layanan Premium Website.\n\n*Detail Order*:\n• Paket: Paket ${packageName}\n• Harga: ${price}\n• Metode Pembayaran: WhatsApp Transfer / Garansi Aktivasi\n\nMohon diinformasikan instruksi nomor rekening pembayaran selanjutnya. Terima kasih!`;
-            
-            // Encode teks pesan agar kompatibel dengan URL API WhatsApp resmi
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
-            
-            // Buka tab atau aplikasi WhatsApp langsung di perangkat user
-            window.open(whatsappUrl, '_blank');
+            const message = `Halo Admin SAHAMPRO,\n\nSaya ingin berlangganan Paket Premium.\n\n*Detail Order*:\n• Paket: ${packageName}\n• Harga: ${price}\n\nMohon petunjuk transfer pembayarannya.`;
+            window.open(`https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // DATABASE INTERNAL SAHAM
+        document.getElementById('btnSearchStock').onclick = function() { updateDashboardData(); };
+        document.getElementById('stockInput').onkeypress = function(e) { if (e.key === 'Enter') { updateDashboardData(); } };
+
+        const idxDatabase = {
+            "BBRI": { per: "11.4x", pbv: "2.1x", roe: "18.5x", yield: "6.2x", status: "Big Accumulation", foreign: "+Rp 42.5M", cls: "text-emerald-400" },
+            "BBCA": { per: "24.1x", pbv: "4.8x", roe: "20.2x", yield: "2.8x", status: "Normal Accumulation", foreign: "-Rp 4.1M", cls: "text-emerald-500" },
+            "BMRI": { per: "10.8x", pbv: "2.2x", roe: "19.1x", yield: "5.8x", status: "Big Accumulation", foreign: "+Rp 82.1M", cls: "text-emerald-400" },
+            "TLKM": { per: "14.2x", pbv: "2.5x", roe: "17.1x", yield: "5.1x", status: "Distribution", foreign: "-Rp 14.8M", cls: "text-red-500" },
+            "CUAN": { per: "Premium", pbv: "28.5x", roe: "12.1x", yield: "0%", status: "Big Accumulation", foreign: "+Rp 18.2M", cls: "text-emerald-400" },
+            "BUMI": { per: "6.2x", pbv: "0.9x", roe: "14.1x", yield: "0%", status: "Neutral", foreign: "+Rp 320Jt", cls: "text-gray-400" }
+        };
+
+        function updateDashboardData() {
+            let ticker = document.getElementById('stockInput').value.trim().toUpperCase();
+            if (!ticker) { ticker = "BBRI"; }
+
+            document.getElementById('stock-title-label').innerText = ticker;
+            const data = idxDatabase[ticker] || { per: "12.5x", pbv: "1.2x", roe: "10.5x", yield: "2.5x", status: "Neutral", foreign: "+Rp 0", cls: "text-gray-400" };
+
+            document.getElementById('lbl-per').innerText = data.per;
+            document.getElementById('lbl-pbv').innerText = data.pbv;
+            document.getElementById('lbl-roe').innerText = data.roe;
+            document.getElementById('lbl-yield').innerText = data.yield;
+
+            const statusBox = document.getElementById('lbl-status-bandar');
+            statusBox.innerText = data.status;
+            statusBox.className = `text-xl font-black ${data.cls}`;
+
+            const foreignBox = document.getElementById('lbl-foreign-flow');
+            foreignBox.innerText = data.foreign;
+            foreignBox.className = `text-xl font-black ${data.foreign.startsWith('-') ? 'text-red-400' : 'text-emerald-400'}`;
         }
     </script>
 </body>
