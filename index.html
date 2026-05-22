@@ -11,7 +11,7 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
 </head>
-<body class="bg-[#0f172a] text-gray-200 antialiased">
+<body class="bg-[#0f172a] text-gray-200 antialiased m-0 p-0">
 
     <div id="public-landing-view" class="block">
         <nav class="border-b border-gray-800 bg-[#1e293b]/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4 flex justify-between items-center max-w-7xl mx-auto w-full">
@@ -65,6 +65,12 @@
                 </div>
             </div>
         </section>
+
+        <div class="w-full text-center py-8 opacity-20 hover:opacity-100 transition">
+            <button onclick="switchView('owner')" class="text-gray-600 hover:text-emerald-400 text-xs">
+                <i class="fa-solid fa-lock mr-1"></i> Owner Portal
+            </button>
+        </div>
     </div>
 
     <div id="owner-dashboard-view" class="hidden flex-col min-h-screen">
@@ -81,6 +87,10 @@
                 <input type="text" id="stockInput" value="BBRI" class="bg-transparent text-white font-extrabold focus:outline-none w-full uppercase">
                 <button type="button" id="btnSearchStock" class="bg-emerald-600 text-white font-bold px-4 py-1.5 rounded-lg text-xs hover:bg-emerald-500 ml-2">Cari</button>
             </div>
+
+            <button onclick="switchView('public')" class="text-xs bg-slate-800 hover:bg-slate-700 text-gray-400 px-3 py-1.5 rounded-lg">
+                <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i> Keluar
+            </button>
         </nav>
 
         <main class="flex-1 p-6 max-w-5xl mx-auto w-full">
@@ -124,17 +134,16 @@
     </div>
 
     <script>
-        // ROUTER SYSTEM: Mengecek apakah url diakhiri kata ?mode=owner
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const myMode = urlParams.get('mode');
-
-            if (myMode === 'owner') {
+        function switchView(target) {
+            if(target === 'owner') {
                 document.getElementById('public-landing-view').style.display = 'none';
                 document.getElementById('owner-dashboard-view').style.display = 'flex';
                 updateDashboardData();
+            } else {
+                document.getElementById('public-landing-view').style.display = 'block';
+                document.getElementById('owner-dashboard-view').style.display = 'none';
             }
-        };
+        }
 
         // INTEGRASI WHATSAPP ORDER OWNER
         function orderViaWhatsApp(packageName, price) {
