@@ -3,279 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analisis Saham Pro - Dashboard</title>
+    <title>IDX Analytics Pro - Premium Stock Analyzer</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom scrollbar untuk mempercantik tampilan */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #111827; }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #10B981; }
+    </style>
 </head>
-<body class="bg-gray-900 text-gray-100 font-sans">
+<body class="bg-[#0f172a] text-gray-100 font-sans min-h-screen flex flex-col">
 
-    <nav class="bg-gray-800 border-b border-gray-700 px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-        <div class="flex items-center space-x-3">
-            <i class="fa-solid fa-chart-line text-emerald-400 text-2xl"></i>
-            <span class="text-xl font-bold tracking-wider text-white">SAHAM<span class="text-emerald-400">PRO</span></span>
-        </div>
-        
-        <div class="flex items-center bg-gray-700 rounded-xl px-3 py-1.5 border border-gray-600 w-full max-w-xs">
-            <i class="fa-solid fa-magnifying-glass text-gray-400 mr-2"></i>
-            <select id="stockSelector" onchange="updateAllAnalyticData()" class="bg-transparent text-white font-bold text-lg focus:outline-none w-full cursor-pointer">
-                <option value="BBRI" class="bg-gray-800 text-white">BBRI (Bank Rakyat Indonesia)</option>
-                <option value="BBCA" class="bg-gray-800 text-white">BBCA (Bank Central Asia)</option>
-                <option value="TLKM" class="bg-gray-800 text-white">TLKM (Telkom Indonesia)</option>
-                <option value="GOTO" class="bg-gray-800 text-white">GOTO (GoTo Gojek Tokopedia)</option>
-                <option value="ASII" class="bg-gray-800 text-white">ASII (Astra International)</option>
-                <option value="BMRI" class="bg-gray-800 text-white">BMRI (Bank Mandiri)</option>
-            </select>
-        </div>
-
-        <div class="flex items-center space-x-4">
-            <span id="userStatus" class="bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full border border-amber-500/30">Mode: Tamu (Belum Berlangganan)</span>
-            <button onclick="toggleAdminPanel()" class="bg-gray-700 hover:bg-gray-600 text-sm px-4 py-2 rounded-lg transition">
-                <i class="fa-solid fa-user-gear mr-2"></i>Simulasi Admin
-            </button>
-        </div>
-    </nav>
-
-    <div class="flex min-h-screen flex-col md:flex-row">
-        <aside class="w-full md:w-64 bg-gray-800/50 p-6 border-r border-gray-700/50">
-            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Menu Analisis</p>
-            <nav class="space-y-2">
-                <button onclick="switchTab('fundamental')" id="btn-fundamental" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-emerald-600 text-white font-medium transition text-left">
-                    <i class="fa-solid fa-file-invoice-dollar w-5"></i>
-                    <span>Fundamental</span>
-                </button>
-                <button onclick="switchTab('teknikal')" id="btn-teknikal" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-400 hover:bg-gray-800 hover:text-white transition text-left">
-                    <i class="fa-solid fa-chart-candlestick w-5"></i>
-                    <span>Teknikal (Premium)</span>
-                </button>
-                <button onclick="switchTab('bandarmology')" id="btn-bandarmology" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-400 hover:bg-gray-800 hover:text-white transition text-left">
-                    <i class="fa-solid fa-users-viewfinder w-5"></i>
-                    <span>Bandarmology (Premium)</span>
-                </button>
-            </nav>
-        </aside>
-
-        <main class="flex-1 p-4 md:p-8">
+    <div id="gatekeeperScreen" class="fixed inset-0 bg-[#0b0f19] z-50 flex items-center justify-center p-4">
+        <div class="bg-[#1e293b] border border-gray-700/60 p-8 rounded-3xl max-w-md w-full shadow-2xl text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r freom-emerald-500 via-teal-500 to-emerald-400"></div>
             
-            <div id="tab-fundamental" class="tab-content block">
-                <h1 class="text-3xl font-bold mb-1 text-white">Analisis Fundamental <span class="text-emerald-400 stock-label">BBRI</span></h1>
-                <p class="text-gray-400 mb-6">Rasio finansial utama berdasarkan laporan keuangan terakhir.</p>
+            <div class="w-20 h-20 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-emerald-500/20 text-3xl shadow-inner">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            
+            <h2 class="text-2xl font-black text-white tracking-tight mb-2">Sistem Analisis Terproteksi</h2>
+            <p class="text-sm text-gray-400 mb-6">Masukkan kata sandi akses khusus untuk membuka dashboard real-time.</p>
+            
+            <div class="space-y-4 text-left">
+                <div>
+                    <label class="text-xs font-bold uppercase tracking-wider text-gray-400 block mb-2">Kata Sandi Akses</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-key absolute left-4 top-3.5 text-gray-500"></i>
+                        <input type="password" id="inputPassword" placeholder="••••••••" class="w-full bg-[#0f172a] border border-gray-700 rounded-xl py-3 pl-11 pr-4 text-white font-mono focus:outline-none focus:border-emerald-500 transition">
+                    </div>
+                    <p id="loginError" class="text-xs text-red-400 font-medium mt-2 hidden"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Kata sandi salah! Akses ditolak.</p>
+                </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                    <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
-                        <p class="text-sm text-gray-400">P/E Ratio (PER)</p>
-                        <p id="fun-per" class="text-2xl font-bold text-white mt-1">11.4x</p>
-                    </div>
-                    <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
-                        <p class="text-sm text-gray-400">Price to Book Value (PBV)</p>
-                        <p id="fun-pbv" class="text-2xl font-bold text-white mt-1">2.1x</p>
-                    </div>
-                    <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
-                        <p class="text-sm text-gray-400">ROE (Return on Equity)</p>
-                        <p id="fun-roe" class="text-2xl font-bold text-emerald-400 mt-1">18.5%</p>
-                    </div>
-                    <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
-                        <p class="text-sm text-gray-400">Dividend Yield</p>
-                        <p id="fun-yield" class="text-2xl font-bold text-blue-400 mt-1">6.2%</p>
-                    </div>
-                </div>
-
-                <div class="bg-gray-800 p-4 rounded-2xl border border-gray-700 mb-6">
-                    <h3 class="text-sm font-semibold text-gray-400 mb-3">Informasi Pasar Live TradingView:</h3>
-                    <div id="tradingview-ticker"></div>
-                </div>
+                <button onclick="checkAccessPassword()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-emerald-900/30 transition transform active:scale-98 flex items-center justify-center space-x-2 cursor-pointer">
+                    <span>Masuk ke Dashboard</span>
+                    <i class="fa-solid fa-arrow-right text-sm"></i>
+                </button>
             </div>
 
-            <div id="tab-teknikal" class="tab-content hidden">
-                <h1 class="text-3xl font-bold mb-1 text-white">Analisis Teknikal <span class="text-emerald-400 stock-label">BBRI</span></h1>
-                <p class="text-gray-400 mb-6">Live Interactive Chart & Technical Indicators.</p>
-                
-                <div id="lock-teknikal" class="bg-gray-800/80 backdrop-blur-sm border border-amber-500/30 p-12 rounded-3xl text-center max-w-2xl mx-auto my-12">
-                    <i class="fa-solid fa-lock text-5xl text-amber-400 mb-4"></i>
-                    <h3 class="text-2xl font-bold text-white mb-2">Konten Ini Terkunci</h3>
-                    <p class="text-gray-400 mb-6">Akun Anda belum disetujui atau masa langganan Anda telah habis. Silakan hubungi Admin untuk aktivasi.</p>
-                    <a href="#" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-6 py-3 rounded-xl transition">
-                        Hubungi Admin via WhatsApp
-                    </a>
-                </div>
-
-                <div id="content-teknikal" class="hidden space-y-6">
-                    <div class="bg-gray-800 p-4 rounded-2xl border border-gray-700 h-[500px]">
-                        <div id="tradingview_chart_container" class="h-full w-full"></div>
-                    </div>
-                </div>
+            <div class="mt-8 pt-6 border-t border-gray-700/50">
+                <p class="text-xs text-gray-400 mb-3">Belum punya akses? Ajukan izin ke pemilik website:</p>
+                <form action="https://formspree.io/f/xknkyjqy" method="POST" class="space-y-2">
+                    <input type="email" name="email" required placeholder="Email Kamu" class="w-full bg-[#0f172a]/60 border border-gray-700 rounded-lg p-2 text-xs text-white focus:outline-none focus:border-emerald-500">
+                    <input type="text" name="nama" required placeholder="Nama Lengkap" class="w-full bg-[#0f172a]/60 border border-gray-700 rounded-lg p-2 text-xs text-white focus:outline-none focus:border-emerald-500">
+                    <button type="submit" class="w-full bg-gray-800 hover:bg-gray-700 text-gray-300 font-semibold py-2 rounded-lg text-xs transition cursor-pointer">
+                        Kirim Pengajuan Izin Akses
+                    </button>
+                </form>
             </div>
-
-            <div id="tab-bandarmology" class="tab-content hidden">
-                <h1 class="text-3xl font-bold mb-1 text-white">Analisis Bandarmology <span class="text-emerald-400 stock-label">BBRI</span></h1>
-                <p class="text-gray-400 mb-6">Mendeteksi aktivitas akumulasi dan distribusi broker summary.</p>
-                
-                <div id="lock-bandarmology" class="bg-gray-800/80 backdrop-blur-sm border border-amber-500/30 p-12 rounded-3xl text-center max-w-2xl mx-auto my-12">
-                    <i class="fa-solid fa-lock text-5xl text-amber-400 mb-4"></i>
-                    <h3 class="text-2xl font-bold text-white mb-2">Konten Ini Terkunci</h3>
-                    <p class="text-gray-400 mb-6">Halaman ini memerlukan status langganan aktif.</p>
-                </div>
-
-                <div id="content-bandarmology" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
-                        <h3 class="text-lg font-bold text-emerald-400 mb-3"><i class="fa-solid fa-building-columns mr-2"></i>Status Bandar (1 Hari Terakhir)</h3>
-                        <div class="p-4 bg-gray-900 rounded-xl border border-gray-700 text-center">
-                            <span id="bandar-status" class="text-2xl font-extrabold text-emerald-400 uppercase">BIG ACCUMULATION</span>
-                        </div>
-                        <p class="text-xs text-gray-400 mt-3">*Simulasi kalkulasi top 3 buyer vs top 3 seller broker summary.</p>
-                    </div>
-                    <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
-                        <h3 class="text-lg font-bold text-blue-400 mb-3"><i class="fa-solid fa-globe mr-2"></i>Net Foreign (Asing)</h3>
-                        <p class="text-sm text-gray-300 mb-2">Pergerakan modal asing pada saham <span class="stock-label font-bold">BBRI</span>:</p>
-                        <div id="bandar-foreign" class="text-xl font-bold text-emerald-400">+Rp 42.5 Miliar (Net Buy)</div>
-                    </div>
-                </div>
-            </div>
-
-        </main>
+        </div>
     </div>
 
-    <div id="adminPanel" class="fixed right-0 top-0 h-full w-80 bg-gray-800 border-l border-gray-700 shadow-2xl p-6 transform translate-x-full transition-transform duration-300 z-50">
-        <div class="flex justify-between items-center mb-6">
-            <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-gears mr-2 text-emerald-400"></i>Kontrol Akses</h3>
-            <button onclick="toggleAdminPanel()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-        </div>
-        <div class="space-y-6">
-            <div class="bg-gray-900 p-4 rounded-xl border border-gray-700">
-                <p class="text-xs font-semibold text-gray-400 mb-2">UBAH STATUS AKSES USER (Simulasi)</p>
-                <div class="space-y-2">
-                    <button onclick="changeAccess('free')" class="w-full text-left bg-gray-800 hover:bg-gray-700 p-3 rounded-lg text-sm flex justify-between items-center">
-                        <span>1. Non-Aktif / Tamu</span>
-                        <i class="fa-solid fa-circle text-xs text-red-500"></i>
-                    </button>
-                    <button onclick="changeAccess('premium')" class="w-full text-left bg-gray-800 hover:bg-gray-700 p-3 rounded-lg text-sm flex justify-between items-center">
-                        <span>2. Aktif (Premium)</span>
-                        <i class="fa-solid fa-circle text-xs text-emerald-500"></i>
-                    </button>
+    <div id="mainDashboard" class="hidden flex-col flex-1">
+        <nav class="bg-[#1e293b]/90 backdrop-blur-md border-b border-gray-800 px-6 py-4 flex flex-col lg:flex-row justify-between items-center gap-4 sticky top-0 z-40">
+            <div class="flex items-center space-x-3">
+                <div class="bg-emerald-500/10 p-2 rounded-xl border border-emerald-500/20">
+                    <i class="fa-solid fa-chart-line text-emerald-400 text-xl"></i>
                 </div>
+                <span class="text-xl font-black tracking-wider text-white">IDX<span class="text-emerald-400">ANALYTICS</span></span>
             </div>
+            
+            <div class="flex items-center bg-[#0f172a] rounded-xl px-4 py-2 border border-gray-700 w-full max-w-md focus-within:border-emerald-500 transition shadow-inner">
+                <i class="fa-solid fa-magnifying-glass text-emerald-400 mr-3"></i>
+                <select id="stockSelector" onchange="updateAllAnalyticData()" class="bg-transparent text-white font-extrabold text-base focus:outline-none w-full cursor-pointer">
+                    <optgroup label="Perbankan (Big Banks)" class="bg-[#0f172a]">
+                        <option value="BBRI" selected>BBRI - Bank Rakyat Indonesia</option>
+                        <option value="BBCA">BBCA - Bank Central Asia</option>
+                        <option value="BMRI">BMRI - Bank Mandiri</option>
+                        <option value="BBNI">BBNI - Bank Negara Indonesia</option>
+                        <option value="BRIS">BRIS - Bank Syariah Indonesia</option>
+                        <option value="BBTN">BBTN - Bank Tabungan Negara</option>
+                    </optgroup>
+                    <optgroup label="Infrastruktur & Telekomunikasi" class="bg-[#0f172a]">
+                        <option value="TLKM">TLKM - Telkom Indonesia</option>
+                        <option value="ISAT">ISAT - Indosat Ooredoo Hutchison</option>
+                        <option value="EXCL">EXCL - XL Axiata</option>
+                        <option value="JSMR">JSMR - Jasa Marga</option>
+                    </optgroup>
+                    <optgroup label="Energi & Tambang Komoditas" class="bg-[#0f172a]">
+                        <option value="ADRO">ADRO - Adaro Energy</option>
+                        <option value="PTBA">PTBA - Bukit Asam</option>
+                        <option value="ITMG">ITMG - Indo Tambangraya Megah</option>
+                        <option value="ANTM">ANTM - Aneka Tambang</option>
+                        <option value="INCO">INCO - Vale Indonesia</option>
+                        <option value="MEDC">MEDC - Medco Energi Internasional</option>
+                        <option value="PGAS">PGAS - Perusahaan Gas Negara</option>
+                    </optgroup>
+                    <optgroup label="Consumer Goods & Ritel" class="bg-[#0f172a]">
+                        <option value="UNVR">UNVR - Unilever Indonesia</option>
+                        <option value="ICBP">ICBP - Indofood CBP Sukses Makmur</option>
+                        <option value="INDF">INDF - Indofood Sukses Makmur</option>
+                        <option value="AMRT">AMRT - Sumber Alfaria Trijaya (Alfamart)</option>
+                        <option value="ACES">ACES - Aspirasi Hidup Indonesia (Ace Hardware)</option>
+                        <option value="GGRM">GGRM - Gudang Garam</option>
+                        <option value="HMSP">HMSP - HM Sampoerna</option>
+                    </optgroup>
+                    <optgroup label="Teknologi & Digital" class="bg-[#0f172a]">
+                        <option value="GOTO">GOTO - GoTo Gojek Tokopedia</option>
+                        <option value="BUKA">BUKA - Bukalapak.com</option>
+                        <option value="EMTCO">EMTK - Elang Mahkota Teknologi</option>
+                    </optgroup>
+                    <optgroup label="Konglomerasi & Manufaktur" class="bg-[#0f172a]">
+                        <option value="ASII">ASII - Astra International</option>
+                        <option value="UNTR">UNTR - United Tractors</option>
+                        <option value="CPIN">CPIN - Charoen Pokphand Indonesia</option>
+                        <option value="TPIA">TPIA - Chandra Asri Pacific</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div>
+                <button onclick="logoutSession()" class="bg-gray-800 hover:bg-red-900/40 text-gray-300 hover:text-red-400 text-xs font-bold px-4 py-2.5 rounded-xl border border-gray-700 hover:border-red-900/40 transition flex items-center space-x-2 cursor-pointer">
+                    <i class="fa-solid fa-power-off"></i>
+                    <span>Kunci Dashboard</span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="flex flex-col lg:flex-row flex-1">
+            <aside class="w-full lg:w-64 bg-[#1e293b]/40 lg:border-r border-gray-800 p-6">
+                <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Metode Analisis</p>
+                <nav class="space-y-2 flex lg:flex-col flex-row gap-2 lg:gap-0 w-full overflow-x-auto pb-2 lg:pb-0">
+                    <button onclick="switchTab('fundamental')" id="btn-fundamental" class="w-full flex items-center justify-start space-x-3 px-4 py-3.5 rounded-xl bg-emerald-600 text-white font-bold transition whitespace-nowrap cursor-pointer">
+                        <i class="fa-solid fa-file-invoice-dollar text-lg"></i>
+                        <span>Fundamental</span>
+                    </button>
+                    <button onclick="switchTab('teknikal')" id="btn-teknikal" class="w-full flex items-center justify-start space-x-3 px-4 py-3.5 rounded-xl text-gray-400 hover:bg-gray-800/60 hover:text-white font-bold transition whitespace-nowrap cursor-pointer">
+                        <i class="fa-solid fa-chart-candlestick text-lg"></i>
+                        <span>Teknikal Live</span>
+                    </button>
+                    <button onclick="switchTab('bandarmology')" id="btn-bandarmology" class="w-full flex items-center justify-start space-x-3 px-4 py-3.5 rounded-xl text-gray-400 hover:bg-gray-800/60 hover:text-white font-bold transition whitespace-nowrap cursor-pointer">
+                        <i class="fa-solid fa-users-viewfinder text-lg"></i>
+                        <span>Bandarmology</span>
+                    </button>
+                </nav>
+            </aside>
+
+            <main class="flex-1 p-6 md:p-8">
+                
+                <div id="tab-fundamental" class="tab-content block">
+                    <div class="mb-6">
+                        <h1 class="text-3xl font-black text-white tracking-tight">Kondisi Fiskal & Fundamental <span class="text-emerald-400 stock-title-label">BBRI</span></h1>
+                        <p class="text-sm text-gray-400 mt-1">Metrik evaluasi laporan keuangan emiten ter-update.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-6">
+                        <div class="bg-[#1e293b]/60 border border-gray-800 p-5 rounded-2xl shadow-sm">
+                            <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">Price to Earnings (PER)</span>
+                            <span id="f-per" class="text-2xl font-black text-white mt-2 block">11.4x</span>
+                        </div>
+                        <div class="bg-[#1e293b]/60 border border-gray-800 p-5 rounded-2xl shadow-sm">
+                            <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">Price to Book Value (PBV)</span>
+                            <span id="f-pbv" class="text-2xl font-black text-white mt-2 block">2.1x</span>
+                        </div>
+                        <div class="bg-[#1e293b]/60 border border-gray-800 p-5 rounded-2xl shadow-sm">
+                            <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">Return on Equity (ROE)</span>
+                            <span id="f-roe" class="text-2xl font-black text-emerald-400 mt-2 block">18.5%</span>
+                        </div>
+                        <div class="bg-[#1e293b]/60 border border-gray-800 p-5 rounded-2xl shadow-sm">
+                            <span class="text-xs font-bold text-gray-400 block uppercase tracking-wider">Dividend Yield</span>
+                            <span id="f-yield" class="text-2xl font-black text-blue-400 mt-2 block">6.2%</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#1e293b]/60 border border-gray-800 p-4 rounded-2xl h-[450px]">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3"><i class="fa-solid fa-chart-pie mr-2 text-emerald-400"></i>Profil Fundamental & Pasar Keuangan Live</h3>
+                        <div id="tv_fundamental_widget" class="w-full h-[calc(100%-2rem)] rounded-xl overflow-hidden"></div>
+                    </div>
+                </div>
+
+                <div id="tab-teknikal" class="tab-content hidden h-full">
+                    <div class="mb-4 flex justify-between items-center">
+                        <div>
+                            <h1 class="text-3xl font-black text-white tracking-tight">Advanced Technical Chart <span class="text-emerald-400 stock-title-label">BBRI</span></h1>
+                            <p class="text-sm text-gray-400 mt-1">Gunakan indikator Moving Average, RSI, MACD, dan Stochastic secara langsung.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-[#1e293b]/60 border border-gray-800 p-2 rounded-2xl h-[600px] shadow-2xl">
+                        <div id="tv_technical_chart" class="w-full h-full rounded-xl overflow-hidden"></div>
+                    </div>
+                </div>
+
+                <div id="tab-bandarmology" class="tab-content hidden">
+                    <div class="mb-6">
+                        <h1 class="text-3xl font-black text-white tracking-tight">Deteksi Aliran Dana & Bandarmology <span class="text-emerald-400 stock-title-label">BBRI</span></h1>
+                        <p class="text-sm text-gray-400 mt-1">Mengukur transaksi investor institusi besar vs investor ritel domestik.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-[#1e293b]/60 border border-gray-800 p-6 rounded-2xl">
+                            <h3 class="text-xs font-bold tracking-widest uppercase text-gray-400 mb-4 flex items-center"><i class="fa-solid fa-building-columns text-emerald-400 mr-2 text-base"></i>Status Akumulasi Bandar</h3>
+                            <div class="p-5 bg-[#0f172a] border border-gray-800 rounded-xl text-center shadow-inner">
+                                <span id="b-status" class="text-3xl font-black tracking-wide text-emerald-400 block">BIG ACCUMULATION</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-4 leading-relaxed">Kalkulasi berdasarkan rasio volume konsentrasi pembelian oleh 3 broker teratas (Top 3 Buyer Buy Vol) di pasar reguler.</p>
+                        </div>
+
+                        <div class="bg-[#1e293b]/60 border border-gray-800 p-6 rounded-2xl">
+                            <h3 class="text-xs font-bold tracking-widest uppercase text-gray-400 mb-4 flex items-center"><i class="fa-solid fa-globe text-blue-400 mr-2 text-base"></i>Aktivitas Investor Asing (Foreign Flow)</h3>
+                            <div class="p-5 bg-[#0f172a] border border-gray-800 rounded-xl text-center shadow-inner">
+                                <span id="b-foreign" class="text-3xl font-black tracking-wide text-emerald-400 block">+Rp 42.5 Miliar</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-4 leading-relaxed">Mengukur net buy/sell asing harian. Arus modal asing yang konsisten masuk memicu reli penguatan harga jangka panjang.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#1e293b]/60 border border-gray-800 p-4 rounded-2xl h-[400px]">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3"><i class="fa-solid fa-gauge-high mr-2 text-blue-400"></i>Konsensus Indikator Pasar (Kekuatan Jual & Beli)</h3>
+                        <div id="tv_technical_gauge" class="w-full h-[calc(100%-2rem)] rounded-xl overflow-hidden"></div>
+                    </div>
+                </div>
+
+            </main>
         </div>
     </div>
 
     <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
     <script>
-        // Database Simulasi Data Fundamental & Bandarmologi Saham IDX (Bisa kamu ganti angkanya sendiri)
-        const stockDatabase = {
-            BBRI: { per: "11.4x", pbv: "2.1x", roe: "18.5%", yield: "6.2%", bandar: "Big Accumulation", foreign: "+Rp 42.5 Miliar (Net Buy)", color: "text-emerald-400" },
-            BBCA: { per: "24.1x", pbv: "4.8x", roe: "20.2%", yield: "2.8%", bandar: "Normal Accumulation", foreign: "+Rp 112.1 Miliar (Net Buy)", color: "text-emerald-400" },
-            TLKM: { per: "14.2x", pbv: "2.5x", roe: "17.1%", yield: "5.1%", bandar: "Distribution", foreign: "-Rp 14.8 Miliar (Net Sell)", color: "text-red-400" },
-            GOTO: { per: "Negative", pbv: "0.6x", roe: "-8.4%", yield: "0%", bandar: "Big Distribution", foreign: "-Rp 5.2 Miliar (Net Sell)", color: "text-red-500" },
-            ASII: { per: "8.1x", pbv: "1.1x", roe: "13.9%", yield: "7.5%", bandar: "Neutral", foreign: "+Rp 1.2 Miliar (Net Buy)", color: "text-gray-300" },
-            BMRI: { per: "10.8x", pbv: "2.2x", roe: "19.1%", yield: "5.8%", bandar: "Big Accumulation", foreign: "+Rp 89.4 Miliar (Net Buy)", color: "text-emerald-400" }
-        };
+        // KATA SANDI AKSES - Silakan ganti kata di dalam tanda kutip dengan sandi rahasia pilihanmu
+        const KATA_SANDI_RAHASIA = "CATUR_GANTENG";
 
-        let currentUser = { isApproved: false, subscriptionActive: false };
-        let currentTab = 'fundamental';
-
-        // Fungsi ketika user mengganti kode Saham di bagian atas website
-        function updateAllAnalyticData() {
-            const ticker = document.getElementById('stockSelector').value;
-            
-            // 1. Update semua text label kode saham di layar
-            document.querySelectorAll('.stock-label').forEach(el => el.innerText = ticker);
-
-            // 2. Ambil data dari database fundamental lokal & pasang ke layar
-            const data = stockDatabase[ticker];
-            if(data) {
-                document.getElementById('fun-per').innerText = data.per;
-                document.getElementById('fun-pbv').innerText = data.pbv;
-                document.getElementById('fun-roe').innerText = data.roe;
-                document.getElementById('fun-yield').innerText = data.yield;
-                
-                document.getElementById('bandar-status').innerText = data.bandar;
-                document.getElementById('bandar-status').className = `text-2xl font-extrabold uppercase ${data.color}`;
-                document.getElementById('bandar-foreign').innerText = data.foreign;
-                document.getElementById('bandar-foreign').className = `text-xl font-bold ${data.color}`;
-            }
-
-            // 3. Update Chart Real-time Teknikal TradingView (Hanya jika user premium & di tab teknikal)
-            if(currentUser.subscriptionActive && currentTab === 'teknikal') {
-                loadTradingViewChart(ticker);
-            }
-        }
-
-        // Fungsi menggambar Chart Interaktif TradingView secara Real-time
-        function loadTradingViewChart(tickerCode) {
-            // Ditambahkan prefiks 'IDX:' agar sistem tahu ini saham Indonesia
-            new TradingView.widget({
-                "width": "100%",
-                "height": "100%",
-                "symbol": "IDX:" + tickerCode,
-                "interval": "D",
-                "timezone": "Asia/Jakarta",
-                "theme": "dark",
-                "style": "1",
-                "locale": "id",
-                "toolbar_bg": "#f1f3f6",
-                "enable_publishing": false,
-                "hide_side_toolbar": false,
-                "allow_symbol_change": false,
-                "container_id": "tradingview_chart_container"
-            });
-        }
-
-        // Kontrol Perpindahan Halaman Tab
-        function switchTab(tabName) {
-            currentTab = tabName;
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.getElementById(`tab-${tabName}`).classList.remove('hidden');
-
-            document.querySelectorAll('aside nav button').forEach(btn => {
-                btn.classList.remove('bg-emerald-600', 'text-white', 'font-medium');
-                btn.classList.add('text-gray-400', 'hover:bg-gray-800', 'hover:text-white');
-            });
-            document.getElementById(`btn-${tabName}`).classList.add('bg-emerald-600', 'text-white', 'font-medium');
-            document.getElementById(`btn-${tabName}`).classList.remove('text-gray-400', 'hover:bg-gray-800');
-
-            checkGatekeeper(tabName);
-        }
-
-        function checkGatekeeper(tabName) {
-            const ticker = document.getElementById('stockSelector').value;
-            if (tabName === 'teknikal' || tabName === 'bandarmology') {
-                if (currentUser.isApproved && currentUser.subscriptionActive) {
-                    document.getElementById(`lock-${tabName}`).classList.add('hidden');
-                    document.getElementById(`content-${tabName}`).classList.remove('hidden');
-                    if(tabName === 'teknikal') {
-                        // Jalankan fungsi chart jika disetujui
-                        setTimeout(() => { loadTradingViewChart(ticker); }, 100);
-                    }
-                } else {
-                    document.getElementById(`lock-${tabName}`).classList.remove('hidden');
-                    document.getElementById(`content-${tabName}`).classList.add('hidden');
-                }
-            }
-        }
-
-        // Simulasi Admin panel
-        function changeAccess(type) {
-            const statusLabel = document.getElementById('userStatus');
-            if (type === 'premium') {
-                currentUser.isApproved = true;
-                currentUser.subscriptionActive = true;
-                statusLabel.innerText = "Mode: Berlangganan Aktif ✅";
-                statusLabel.className = "bg-emerald-500/20 text-emerald-400 text-xs px-3 py-1 rounded-full border border-emerald-500/30";
-            } else {
-                currentUser.isApproved = false;
-                currentUser.subscriptionActive = false;
-                statusLabel.innerText = "Mode: Tamu (Belum Berlangganan)";
-                statusLabel.className = "bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full border border-amber-500/30";
-            }
-            checkGatekeeper(currentTab);
-        }
-
-        function toggleAdminPanel() {
-            document.getElementById('adminPanel').classList.toggle('translate-x-full');
-        }
-
-        // Jalankan sinkronisasi data pertama kali saat web dimuat
-        window.onload = function() {
-            updateAllAnalyticData();
-        };
-    </script>
-</body>
-                </html>
+        // MASTER DATA SAHAM IDX (Fundamental & Bandarmologi Statis)
+        const idxDatabase = {
+            BBRI: { per: "11.4x", pbv: "2.1x", roe: "18.5%", yield: "6.2%", status: "Big Accumulation", foreign: "+Rp 42.5M (Net Buy)", cls: "text-emerald-400" },
+            BBCA: { per: "24.1x", pbv: "4.8x", roe: "20.2%", yield: "2.8%", status: "Normal Accumulation", foreign: "+Rp 112.1M (Net Buy)", cls: "text-emerald-400" },
+            BMRI: { per: "10.8x", pbv: "2.2x", roe: "19.1%", yield: "5.8%", status: "Big Accumulation", foreign: "+Rp 89.4M (Net Buy)", cls: "text-emerald-400" },
+            BBNI: { per: "9.2x", pbv: "1.3x", roe: "14.8%", yield: "5.0%", status: "Neutral", foreign: "+Rp 4.1M (Net Buy)", cls: "text-gray-400" },
+            BRIS: { per: "18.5x", pbv: "2.4x", roe: "13.2%", yield: "1.5%", status: "Big Accumulation", foreign: "+Rp 21.8M (Net Buy)", cls: "text-emerald-400" },
+            BBTN: { per: "5.4x", pbv: "0.6x", roe: "11.1%", yield: "4.8%", status: "Normal Distribution", foreign: "-Rp 2.1M (Net Sell)", cls: "text-red-400" },
+            TLKM: { per: "14.2x", pbv: "2.5x", roe: "17.1%", yield: "5.1%", status: "Distribution", foreign: "-Rp 14.8M (Net Sell)", cls: "text-red-400" },
+            ISAT: { per: "16.1x", pbv: "2.9x", roe: "15.5%", yield: "3.2%", status: "Normal Accumulation", foreign: "+Rp 11.2M (Net Buy)", cls: "text-emerald-400" },
+            EXCL: { per: "12.8x", pbv: "1.1x", roe: "8.4%", yield: "2.9%", status: "Neutral", foreign: "+Rp 500Jt (Net Buy)", cls: "text-gray-400" },
+            JSMR: { per: "8.9x", pbv: "1.4x", roe: "16.2%", yield: "4.1%", status: "Big Accumulation", foreign: "+Rp 15.6M (Net Buy)", cls: "text-emerald-400" },
+            ADRO: { per: "4.1x", pbv: "0.9x", roe: "22.5%", yield: "11.2%", status: "Big Distribution", foreign: "-Rp 34.2M (Net Sell)", cls: "text-red-500" },
+            PTBA: { per: "5.2x", pbv: "1.2x", roe: "21.1%", yield: "13.5%", status: "Distribution", foreign: "-Rp 11.5M (Net Sell)", cls: "text-red-400" },
+            ITMG: { per: "4.8x", pbv: "1.1x", roe: "23.4%", yield: "14.1%", status: "Neutral", foreign: "-Rp 1.1M (Net Sell)", cls: "text-gray-400" },
+            ANTM: { per: "11.1x", pbv: "1.5x", roe: "12.9%", yield: "3.8%", status: "Normal Accumulation", foreign: "+Rp 7.8M (Net Buy)", cls: "text-emerald-400" },
+            INCO: { per: "13.4x", pbv: "1.1x", roe: "8.2%", yield: "2.1%", status: "Distribution", foreign: "-Rp 5.9M (Net Sell)", cls: "text-red-400" },
+            MEDC: { per: "6.1x", pbv: "1.2x", roe: "18.1%", yield: "3.5%", status: "Big Accumulation", foreign: "+Rp 19.3M (Net Buy)", cls: "text-emerald-400" },
+            PGAS: { per: "7.4x", pbv: "0.8x", roe: "10.5%", yield: "6.8%", status: "Neutral", foreign: "+Rp 2.4M (Net Buy)", cls: "text-gray-400" },
+            UNVR: { per: "21.5x", pbv: "22.1x", roe: "102%", yield: "4.9%", status: "Big Distribution", foreign: "-Rp 41.2M (Net Sell)", cls: "text-red-500" },
+            ICBP: { per: "15.3x", pb
