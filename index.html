@@ -13,7 +13,7 @@
 </head>
 <body class="bg-[#0f172a] text-gray-200 antialiased m-0 p-0">
 
-    <div id="public-landing-view" class="block">
+    <div id="public-landing-view" class="block relative min-h-screen">
         <nav class="border-b border-gray-800 bg-[#1e293b]/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4 flex justify-between items-center max-w-7xl mx-auto w-full">
             <div class="flex items-center space-x-2">
                 <div class="bg-emerald-500/10 p-2 rounded-xl border border-emerald-500/20">
@@ -40,7 +40,7 @@
             </div>
         </header>
 
-        <section id="pricing" class="max-w-5xl mx-auto px-6 py-16 border-t border-gray-800/60">
+        <section id="pricing" class="max-w-5xl mx-auto px-6 py-16 border-t border-gray-800/60 pb-32">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
                 <div class="bg-[#1e293b]/50 border border-gray-800 p-8 rounded-3xl flex flex-col justify-between">
                     <div>
@@ -66,9 +66,10 @@
             </div>
         </section>
 
-        <div class="w-full text-center py-8 opacity-20 hover:opacity-100 transition">
-            <button onclick="switchView('owner')" class="text-gray-600 hover:text-emerald-400 text-xs">
-                <i class="fa-solid fa-lock mr-1"></i> Owner Portal
+        <div class="absolute bottom-6 right-6 z-40">
+            <button onclick="switchView('owner')" class="text-slate-700 hover:text-emerald-400 transition flex items-center gap-1.5 px-3 py-1.5 rounded-lg">
+                <i class="fa-solid fa-lock text-sm"></i>
+                <span class="text-xs font-bold">Owner Portal</span>
             </button>
         </div>
     </div>
