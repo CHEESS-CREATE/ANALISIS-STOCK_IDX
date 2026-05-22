@@ -7,7 +7,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Custom scrollbar untuk mempercantik tampilan */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #111827; }
         ::-webkit-scrollbar-thumb { background: #374151; border-radius: 10px; }
@@ -17,8 +16,8 @@
 <body class="bg-[#0f172a] text-gray-100 font-sans min-h-screen flex flex-col">
 
     <div id="gatekeeperScreen" class="fixed inset-0 bg-[#0b0f19] z-50 flex items-center justify-center p-4">
-        <div class="bg-[#1e293b] border border-gray-700/60 p-8 rounded-3xl max-w-md w-full shadow-2xl text-center relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r freom-emerald-500 via-teal-500 to-emerald-400"></div>
+        <div class="bg-[#1e293b] border border-gray-700 p-8 rounded-3xl max-w-md w-full shadow-2xl text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-400"></div>
             
             <div class="w-20 h-20 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-emerald-500/20 text-3xl shadow-inner">
                 <i class="fa-solid fa-shield-halved"></i>
@@ -37,18 +36,19 @@
                     <p id="loginError" class="text-xs text-red-400 font-medium mt-2 hidden"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Kata sandi salah! Akses ditolak.</p>
                 </div>
                 
-                <button onclick="checkAccessPassword()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-emerald-900/30 transition transform active:scale-98 flex items-center justify-center space-x-2 cursor-pointer">
-                    <span>Masuk ke Dashboard</span>
-                    <i class="fa-solid fa-arrow-right text-sm"></i>
+                <button type="button" onclick="checkAccessPassword()" class="w-full bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-emerald-900/30 transition block text-center cursor-pointer relative z-10">
+                    Masuk ke Dashboard <i class="fa-solid fa-arrow-right text-sm ml-2"></i>
                 </button>
             </div>
 
             <div class="mt-8 pt-6 border-t border-gray-700/50">
                 <p class="text-xs text-gray-400 mb-3">Belum punya akses? Ajukan izin ke pemilik website:</p>
-                <form action="https://formspree.io/f/xknkyjqy" method="POST" class="space-y-2">
-                    <input type="email" name="email" required placeholder="Email Kamu" class="w-full bg-[#0f172a]/60 border border-gray-700 rounded-lg p-2 text-xs text-white focus:outline-none focus:border-emerald-500">
-                    <input type="text" name="nama" required placeholder="Nama Lengkap" class="w-full bg-[#0f172a]/60 border border-gray-700 rounded-lg p-2 text-xs text-white focus:outline-none focus:border-emerald-500">
-                    <button type="submit" class="w-full bg-gray-800 hover:bg-gray-700 text-gray-300 font-semibold py-2 rounded-lg text-xs transition cursor-pointer">
+                
+                <form action="https://formspree.io/f/xknkyjqy" method="POST" class="space-y-2 relative z-10">
+                    <input type="email" name="email" required placeholder="Email Kamu" class="w-full bg-[#0f172a]/60 border border-gray-700 rounded-lg p-2.5 text-xs text-white focus:outline-none focus:border-emerald-500">
+                    <input type="text" name="nama" required placeholder="Nama Lengkap" class="w-full bg-[#0f172a]/60 border border-gray-700 rounded-lg p-2.5 text-xs text-white focus:outline-none focus:border-emerald-500">
+                    
+                    <button type="submit" class="w-full bg-gray-800 hover:bg-gray-700 active:bg-gray-900 text-gray-300 font-semibold py-2.5 rounded-lg text-xs transition cursor-pointer block text-center">
                         Kirim Pengajuan Izin Akses
                     </button>
                 </form>
@@ -103,7 +103,7 @@
                     <optgroup label="Teknologi & Digital" class="bg-[#0f172a]">
                         <option value="GOTO">GOTO - GoTo Gojek Tokopedia</option>
                         <option value="BUKA">BUKA - Bukalapak.com</option>
-                        <option value="EMTCO">EMTK - Elang Mahkota Teknologi</option>
+                        <option value="EMTK">EMTK - Elang Mahkota Teknologi</option>
                     </optgroup>
                     <optgroup label="Konglomerasi & Manufaktur" class="bg-[#0f172a]">
                         <option value="ASII">ASII - Astra International</option>
@@ -115,7 +115,7 @@
             </div>
 
             <div>
-                <button onclick="logoutSession()" class="bg-gray-800 hover:bg-red-900/40 text-gray-300 hover:text-red-400 text-xs font-bold px-4 py-2.5 rounded-xl border border-gray-700 hover:border-red-900/40 transition flex items-center space-x-2 cursor-pointer">
+                <button type="button" onclick="logoutSession()" class="bg-gray-800 hover:bg-red-900/40 text-gray-300 hover:text-red-400 text-xs font-bold px-4 py-2.5 rounded-xl border border-gray-700 hover:border-red-900/40 transition flex items-center space-x-2 cursor-pointer">
                     <i class="fa-solid fa-power-off"></i>
                     <span>Kunci Dashboard</span>
                 </button>
@@ -126,15 +126,15 @@
             <aside class="w-full lg:w-64 bg-[#1e293b]/40 lg:border-r border-gray-800 p-6">
                 <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Metode Analisis</p>
                 <nav class="space-y-2 flex lg:flex-col flex-row gap-2 lg:gap-0 w-full overflow-x-auto pb-2 lg:pb-0">
-                    <button onclick="switchTab('fundamental')" id="btn-fundamental" class="w-full flex items-center justify-start space-x-3 px-4 py-3.5 rounded-xl bg-emerald-600 text-white font-bold transition whitespace-nowrap cursor-pointer">
+                    <button type="button" onclick="switchTab('fundamental')" id="btn-fundamental" class="w-full flex items-center justify-start space-x-3 px-4 py-3.5 rounded-xl bg-emerald-600 text-white font-bold transition whitespace-nowrap cursor-pointer">
                         <i class="fa-solid fa-file-invoice-dollar text-lg"></i>
                         <span>Fundamental</span>
                     </button>
-                    <button onclick="switchTab('teknikal')" id="btn-teknikal" class="w-full flex items-center justify-start space-x-3 px-4 py-3.5 rounded-xl text-gray-400 hover:bg-gray-800/60 hover:text-white font-bold transition whitespace-nowrap cursor-pointer">
+                    <button type="button" onclick="switchTab('teknikal')" id="btn-teknikal" class="w-full flex items-center justify-start space-x-3 px-4 py-3.5 rounded-xl text-gray-400 hover:bg-gray-800/60 hover:text-white font-bold transition whitespace-nowrap cursor-pointer">
                         <i class="fa-solid fa-chart-candlestick text-lg"></i>
                         <span>Teknikal Live</span>
                     </button>
-                    <button onclick="switchTab('bandarmology')" id="btn-bandarmology" class="w-full flex items-center justify-start space-x-3 px-4 py-3.5 rounded-xl text-gray-400 hover:bg-gray-800/60 hover:text-white font-bold transition whitespace-nowrap cursor-pointer">
+                    <button type="button" onclick="switchTab('bandarmology')" id="btn-bandarmology" class="w-full flex items-center justify-start space-x-3 px-4 py-3.5 rounded-xl text-gray-400 hover:bg-gray-800/60 hover:text-white font-bold transition whitespace-nowrap cursor-pointer">
                         <i class="fa-solid fa-users-viewfinder text-lg"></i>
                         <span>Bandarmology</span>
                     </button>
@@ -175,11 +175,9 @@
                 </div>
 
                 <div id="tab-teknikal" class="tab-content hidden h-full">
-                    <div class="mb-4 flex justify-between items-center">
-                        <div>
-                            <h1 class="text-3xl font-black text-white tracking-tight">Advanced Technical Chart <span class="text-emerald-400 stock-title-label">BBRI</span></h1>
-                            <p class="text-sm text-gray-400 mt-1">Gunakan indikator Moving Average, RSI, MACD, dan Stochastic secara langsung.</p>
-                        </div>
+                    <div class="mb-4">
+                        <h1 class="text-3xl font-black text-white tracking-tight">Advanced Technical Chart <span class="text-emerald-400 stock-title-label">BBRI</span></h1>
+                        <p class="text-sm text-gray-400 mt-1">Gunakan indikator Moving Average, RSI, MACD, dan Stochastic secara langsung.</p>
                     </div>
                     
                     <div class="bg-[#1e293b]/60 border border-gray-800 p-2 rounded-2xl h-[600px] shadow-2xl">
@@ -223,10 +221,10 @@
 
     <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
     <script>
-        // KATA SANDI AKSES - Silakan ganti kata di dalam tanda kutip dengan sandi rahasia pilihanmu
-        const KATA_SANDI_RAHASIA = "CATUR_GANTENG";
+        // KATA SANDI AKSES - Ganti teks ini untuk mengubah password masuk
+        const KATA_SANDI_RAHASIA = "caturbaik";
 
-        // MASTER DATA SAHAM IDX (Fundamental & Bandarmologi Statis)
+        // MASTER DATA SAHAM IDX
         const idxDatabase = {
             BBRI: { per: "11.4x", pbv: "2.1x", roe: "18.5%", yield: "6.2%", status: "Big Accumulation", foreign: "+Rp 42.5M (Net Buy)", cls: "text-emerald-400" },
             BBCA: { per: "24.1x", pbv: "4.8x", roe: "20.2%", yield: "2.8%", status: "Normal Accumulation", foreign: "+Rp 112.1M (Net Buy)", cls: "text-emerald-400" },
@@ -246,4 +244,4 @@
             MEDC: { per: "6.1x", pbv: "1.2x", roe: "18.1%", yield: "3.5%", status: "Big Accumulation", foreign: "+Rp 19.3M (Net Buy)", cls: "text-emerald-400" },
             PGAS: { per: "7.4x", pbv: "0.8x", roe: "10.5%", yield: "6.8%", status: "Neutral", foreign: "+Rp 2.4M (Net Buy)", cls: "text-gray-400" },
             UNVR: { per: "21.5x", pbv: "22.1x", roe: "102%", yield: "4.9%", status: "Big Distribution", foreign: "-Rp 41.2M (Net Sell)", cls: "text-red-500" },
-            ICBP: { per: "15.3x", pb
+            ICBP: { per: "15.3x", pbv: "2.6x", roe: "17.4%", yield: "2.7%", status: "Big Accumulation", foreign: "+Rp 54.1M (Net Buy)", cls: "t
