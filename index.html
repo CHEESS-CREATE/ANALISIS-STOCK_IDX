@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0f172a; }
     </style>
 </head>
-<body class="bg-[#0f172a] text-gray-200 antialiased">
+<body>
 
-    <div id="public-landing-view" class="block relative min-h-screen">
+    <div id="public-landing-view" class="block min-h-screen">
         <nav class="border-b border-gray-800 bg-[#1e293b]/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4 flex justify-between items-center max-w-7xl mx-auto w-full">
             <span class="text-xl font-black text-white">SAHAM<span class="text-emerald-400">PRO</span></span>
             <a href="#pricing" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-5 py-2 rounded-xl text-sm transition">Mulai Langganan</a>
@@ -22,8 +22,23 @@
         <header class="max-w-5xl mx-auto px-6 pt-20 text-center">
             <h1 class="text-4xl md:text-6xl font-black text-white">Ikuti Jejak <span class="text-emerald-400">Big Player</span></h1>
             <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Dashboard pintar untuk menyaring emiten undervalued dan memantau bandar.</p>
-            <div class="mt-10"><a href="#pricing" class="bg-emerald-600 px-8 py-4 rounded-xl font-bold">Lihat Paket</a></div>
         </header>
+
+        <section id="pricing" class="max-w-4xl mx-auto px-6 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-[#1e293b]/50 border border-gray-800 p-8 rounded-3xl">
+                    <h3 class="text-lg font-bold text-white">Paket Bulanan</h3>
+                    <div class="text-3xl font-black text-white my-4">Rp 150.000</div>
+                    <button onclick="orderViaWhatsApp('Bulanan', 'Rp 150.000')" class="w-full mt-6 bg-slate-800 hover:bg-slate-700 py-3 rounded-xl font-bold text-white">Beli Paket</button>
+                </div>
+                <div class="bg-[#1e293b] border-2 border-emerald-500 p-8 rounded-3xl relative">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-slate-950 text-[10px] font-black px-3 py-0.5 rounded-full">TERLARIS</span>
+                    <h3 class="text-lg font-bold text-white">Paket Tahunan</h3>
+                    <div class="text-3xl font-black text-white my-4">Rp 1.200.000</div>
+                    <button onclick="orderViaWhatsApp('Tahunan', 'Rp 1.200.000')" class="w-full mt-6 bg-emerald-600 hover:bg-emerald-500 py-3 rounded-xl font-extrabold text-white">Beli Paket</button>
+                </div>
+            </div>
+        </section>
 
         <div class="absolute bottom-6 right-6">
             <button onclick="switchView('owner')" class="text-slate-700 hover:text-emerald-400 transition flex items-center gap-2">
@@ -36,31 +51,31 @@
         <div class="max-w-5xl mx-auto w-full">
             <div class="flex justify-between items-center mb-8">
                 <h2 class="text-xl font-black text-white">DASHBOARD OWNER</h2>
-                <button onclick="switchView('public')" class="bg-slate-800 px-4 py-2 rounded-lg text-xs">Keluar</button>
+                <button onclick="switchView('public')" class="bg-slate-800 text-white px-4 py-2 rounded-lg text-xs">Keluar</button>
             </div>
             <div class="flex gap-4">
-                <input type="text" id="stockInput" placeholder="Masukkan Ticker (Contoh: BBRI)" class="bg-slate-800 p-3 rounded-xl w-full uppercase">
-                <button onclick="updateDashboardData()" class="bg-emerald-600 px-6 rounded-xl font-bold">Cari</button>
+                <input type="text" id="stockInput" placeholder="Masukkan Ticker (Contoh: BBRI)" class="bg-slate-800 text-white p-3 rounded-xl w-full uppercase border border-gray-700">
+                <button onclick="updateDashboardData()" class="bg-emerald-600 text-white px-6 rounded-xl font-bold">Cari</button>
             </div>
-            <div id="result-area" class="mt-8 p-6 bg-[#1e293b] rounded-3xl border border-gray-700">
-                <h1 id="stock-title-label" class="text-2xl font-black text-emerald-400">--</h1>
-                <div id="lbl-status-bandar" class="text-lg font-bold mt-4">--</div>
+            <div class="mt-8 p-6 bg-[#1e293b] rounded-3xl border border-gray-700">
+                <h1 id="stock-title-label" class="text-2xl font-black text-emerald-400 uppercase">--</h1>
+                <div id="lbl-status-bandar" class="text-lg font-bold text-white mt-4">Masukkan kode saham di atas...</div>
             </div>
         </div>
     </div>
 
     <script>
-        // GANTI PIN DI BAWAH INI
-        const OWNER_PIN = "1234"; 
+        // GANTI PIN INI SESUAI KEINGINAN ANDA
+        const OWNER_PIN = "071227"; 
 
         function switchView(target) {
             if (target === 'owner') {
-                const userPin = prompt("Masukkan PIN Keamanan:");
+                const userPin = prompt("Masukkan PIN Owner:");
                 if (userPin === OWNER_PIN) {
                     document.getElementById('public-landing-view').style.display = 'none';
                     document.getElementById('owner-dashboard-view').style.display = 'flex';
                 } else {
-                    alert("PIN Salah!");
+                    alert("PIN Salah! Akses Ditolak.");
                 }
             } else {
                 document.getElementById('public-landing-view').style.display = 'block';
@@ -68,10 +83,16 @@
             }
         }
 
+        function orderViaWhatsApp(paket, harga) {
+            const noWA = "6287832727925";
+            const pesan = `Halo Admin, saya ingin beli ${paket} seharga ${harga}.`;
+            window.open(`https://api.whatsapp.com/send?phone=${noWA}&text=${encodeURIComponent(pesan)}`, '_blank');
+        }
+
         function updateDashboardData() {
             const ticker = document.getElementById('stockInput').value.toUpperCase();
             document.getElementById('stock-title-label').innerText = ticker;
-            document.getElementById('lbl-status-bandar').innerText = "Status: Big Accumulation"; // Contoh Data
+            document.getElementById('lbl-status-bandar').innerText = "Status: Big Accumulation (Data Simulasi)";
         }
     </script>
 </body>
