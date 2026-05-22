@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <div id="public-landing-view" class="block min-h-screen">
+    <div id="public-landing-view" class="block min-h-screen relative">
         <nav class="border-b border-gray-800 bg-[#1e293b]/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4 flex justify-between items-center max-w-7xl mx-auto w-full">
             <span class="text-xl font-black text-white">SAHAM<span class="text-emerald-400">PRO</span></span>
             <a href="#pricing" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-5 py-2 rounded-xl text-sm transition">Mulai Sekarang</a>
@@ -60,9 +60,9 @@
             </div>
         </section>
 
-        <div class="absolute bottom-6 right-6">
-            <button onclick="switchView('owner')" class="text-slate-700 hover:text-emerald-400 transition flex items-center gap-2">
-                <i class="fa-solid fa-lock text-sm"></i> <span class="text-xs font-bold">Owner Portal</span>
+        <div class="fixed bottom-6 right-6 z-50">
+            <button onclick="switchView('owner')" class="text-slate-700 hover:text-emerald-400 transition flex items-center gap-2 bg-[#1e293b]/80 px-3 py-1.5 rounded-lg border border-gray-800">
+                <i class="fa-solid fa-lock text-xs"></i> <span class="text-[10px] font-bold">Owner Portal</span>
             </button>
         </div>
     </div>
@@ -85,7 +85,7 @@
     </div>
 
     <script>
-        const OWNER_PIN = "071227"; 
+        const OWNER_PIN = "1234"; 
 
         function switchView(target) {
             if (target === 'owner') {
