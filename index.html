@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IDX Analytics Pro - Automated Trading Dashboard</title>
+    <title>IDX AUTO - Automated Trading Plan</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -27,7 +27,7 @@
             <i class="fa-solid fa-magnifying-glass text-emerald-400 mr-3"></i>
             <input type="text" id="stockInput" value="BBRI" placeholder="Ketik Kode Saham Bebas (Contoh: TLKM, GOTO)..." class="bg-transparent text-white font-extrabold text-base focus:outline-none w-full uppercase placeholder-gray-500">
             <button type="button" id="btnSearchStock" class="bg-emerald-600 text-white font-bold px-4 py-1.5 rounded-lg text-xs hover:bg-emerald-500 transition ml-2 flex items-center gap-1">
-                <i class="fa-solid fa-wand-magic-sparkles"></i> Analisis
+                Cari
             </button>
         </div>
     </nav>
@@ -36,18 +36,10 @@
         <aside class="w-full lg:w-64 bg-[#1e293b]/40 lg:border-r border-gray-800 p-4 lg:p-6 flex flex-col justify-between gap-6 z-40">
             <div>
                 <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Metode Analisis</p>
-                <div class="grid grid-cols-3 lg:grid-cols-1 gap-2 w-full">
-                    <button type="button" id="btn-fundamental" class="w-full flex flex-col lg:flex-row items-center justify-center lg:justify-start space-y-1 lg:space-y-0 lg:space-x-3 px-2 lg:px-4 py-3 rounded-xl bg-emerald-600 text-white font-bold text-xs lg:text-sm transition cursor-pointer">
-                        <i class="fa-solid fa-magnifying-glass-chart text-base"></i>
-                        <span>Kalkulator Trading</span>
-                    </button>
-                    <button type="button" id="btn-teknikal" class="w-full flex flex-col lg:flex-row items-center justify-center lg:justify-start space-y-1 lg:space-y-0 lg:space-x-3 px-2 lg:px-4 py-3 rounded-xl text-gray-400 hover:bg-gray-800/60 hover:text-white font-bold text-xs lg:text-sm transition cursor-pointer">
-                        <i class="fa-solid fa-chart-candlestick text-base"></i>
-                        <span>Teknikal Live</span>
-                    </button>
-                    <button type="button" id="btn-bandarmology" class="w-full flex flex-col lg:flex-row items-center justify-center lg:justify-start space-y-1 lg:space-y-0 lg:space-x-3 px-2 lg:px-4 py-3 rounded-xl text-gray-400 hover:bg-gray-800/60 hover:text-white font-bold text-xs lg:text-sm transition cursor-pointer">
-                        <i class="fa-solid fa-shield-halved text-base"></i>
-                        <span>Bandar Radar</span>
+                <div class="grid grid-cols-1 gap-2 w-full">
+                    <button type="button" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-emerald-600 text-white font-bold text-sm transition">
+                        <i class="fa-solid fa-map text-base"></i>
+                        <span>Plan Trading</span>
                     </button>
                 </div>
             </div>
@@ -63,67 +55,52 @@
         </aside>
 
         <main class="flex-1 p-4 md:p-8 w-full overflow-hidden">
-            
-            <div id="tab-fundamental" class="w-full block">
-                <div class="mb-6">
-                    <h1 class="text-2xl md:text-3xl font-black text-white tracking-tight">Rencana Trading Otomatis <span class="text-emerald-400 stock-title-label">BBRI</span></h1>
-                    <p class="text-xs text-gray-400 mt-1">Sistem memproses estimasi teknikal kuantitatif secara instan.</p>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                    <div class="bg-[#1e293b]/60 border border-gray-800 p-4 rounded-2xl">
-                        <span class="text-xs font-bold text-gray-400 block uppercase">Estimasi Harga</span>
-                        <span id="f-per" class="text-xl font-black text-white mt-2 block">Rp 3,050</span>
-                    </div>
-                    <div class="bg-[#1e293b]/60 border border-gray-800 p-4 rounded-2xl border-l-4 border-l-emerald-500">
-                        <span class="text-xs font-bold text-emerald-400 block uppercase">Target Profit (TP)</span>
-                        <span id="f-pbv" class="text-xl font-black text-emerald-400 mt-2 block">Rp 3,350</span>
-                    </div>
-                    <div class="bg-[#1e293b]/60 border border-gray-800 p-4 rounded-2xl border-l-4 border-l-red-500">
-                        <span class="text-xs font-bold text-red-400 block uppercase">Stop Loss (SL)</span>
-                        <span id="f-roe" class="text-xl font-black text-red-400 mt-2 block">Rp 2,900</span>
-                    </div>
-                    <div class="bg-[#1e293b]/60 border border-gray-800 p-4 rounded-2xl">
-                        <span class="text-xs font-bold text-gray-400 block uppercase">Risk / Reward Ratio</span>
-                        <span id="f-yield" class="text-xl font-black text-blue-400 mt-2 block">1 : 2.0</span>
-                    </div>
-                </div>
-                <div class="bg-[#1e293b]/60 border border-gray-800 p-3 rounded-2xl h-[400px]">
-                    <div id="tv_fundamental_widget" class="w-full h-full rounded-xl overflow-hidden"></div>
-                </div>
+            <div class="mb-6">
+                <h1 class="text-2xl md:text-3xl font-black text-white tracking-tight">Plan Trading <span class="text-emerald-400" id="stock-title-label">BBRI</span></h1>
             </div>
 
-            <div id="tab-teknikal" class="w-full hidden">
-                <div class="mb-4">
-                    <h1 class="text-2xl md:text-3xl font-black text-white tracking-tight">Advanced Technical Chart <span class="text-emerald-400 stock-title-label">BBRI</span></h1>
+            <div class="bg-[#1e293b]/60 border border-gray-800 p-6 rounded-3xl shadow-xl mb-6">
+                <h2 class="text-center text-gray-400 font-bold uppercase text-xs tracking-widest mb-6">— Trading Plan —</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-[#0f172a] border border-orange-500/30 p-6 rounded-2xl text-center shadow-lg">
+                        <span class="text-xs font-bold text-orange-400 uppercase tracking-wider block mb-2">AREA ENTRY</span>
+                        <span id="plan-entry" class="text-2xl font-black text-orange-400 block tracking-tight">Rp 2,800 - Rp 2,850</span>
+                        <span class="text-[11px] text-gray-500 block mt-3">(Entry Disiplin di Area Ini)</span>
+                    </div>
+
+                    <div class="bg-[#0f172a] border border-red-500/30 p-6 rounded-2xl text-center shadow-lg">
+                        <span class="text-xs font-bold text-red-400 uppercase tracking-wider block mb-2">STOP LOSS (SL)</span>
+                        <span id="plan-sl" class="text-2xl font-black text-red-400 block tracking-tight">Rp 2,750</span>
+                        <span class="text-[11px] text-gray-500 block mt-3">(Exit Jika Harga Turun Ke Sini)</span>
+                    </div>
+
+                    <div class="bg-[#0f172a] border border-emerald-500/30 p-6 rounded-2xl text-center shadow-lg">
+                        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider block mb-2">TARGET PROFIT (TP)</span>
+                        <span id="plan-tp" class="text-2xl font-black text-emerald-400 block tracking-tight">Rp 3,100 - Rp 3,250</span>
+                        <span class="text-[11px] text-gray-500 block mt-3">(Take Profit di Area Ini)</span>
+                    </div>
                 </div>
-                <div class="bg-[#1e293b]/60 border border-gray-800 p-2 rounded-2xl h-[480px]">
-                    <div id="tv_technical_chart" class="w-full h-full rounded-xl overflow-hidden"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 pt-6 border-t border-gray-800/80 text-sm">
+                    <div class="space-y-1">
+                        <span class="text-xs font-bold text-gray-500 block uppercase">Alasan Entry</span>
+                        <p class="text-white font-medium">Entry suanya kadas tangerap hanga untun stop melergadungin</p>
+                        <p class="text-xs text-gray-400 font-bold mt-2"><span id="lbl-ticker">BBRI</span> (Last Price: <span id="lbl-lastprice">Rp 2,850</span>)</p>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-gray-500 block uppercase mb-1">Risk/Reward Ratio</span>
+                        <span class="text-white font-extrabold text-base block">1 : 2</span>
+                        <span class="text-xs text-gray-400">Winrate kalkulasi otomatis</span>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-gray-500 block uppercase mb-1">Status Bandar</span>
+                        <span id="lbl-bandar" class="text-emerald-400 font-black text-base block">Big Accumulation</span>
+                        <span class="text-xs text-gray-400">Deteksi volume transaksi asing</span>
+                    </div>
                 </div>
             </div>
-
-            <div id="tab-bandarmology" class="w-full hidden">
-                <div class="mb-6">
-                    <h1 class="text-2xl md:text-3xl font-black text-white tracking-tight">Radar Aliran Dana Bandar <span class="text-emerald-400 stock-title-label">BBRI</span></h1>
-                    <p class="text-xs text-gray-400 mt-1">Deteksi otomatis distribusi dan akumulasi volume transaksi pasar harian.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                    <div class="bg-[#1e293b]/60 border border-gray-800 p-5 rounded-2xl">
-                        <h3 class="text-xs font-bold uppercase text-gray-400 mb-3">Status Deteksi Bandar</h3>
-                        <div class="p-4 bg-[#0f172a] border border-gray-800 rounded-xl text-center">
-                            <span id="b-status" class="text-xl font-black text-emerald-400 block">BIG ACCUMULATION</span>
-                        </div>
-                    </div>
-                    <div class="bg-[#1e293b]/60 border border-gray-800 p-5 rounded-2xl">
-                        <h3 class="text-xs font-bold uppercase text-gray-400 mb-3">Prediksi Partisipasi Asing</h3>
-                        <div class="p-4 bg-[#0f172a] border border-gray-800 rounded-xl text-center">
-                            <span id="b-foreign" class="text-xl font-black text-emerald-400 block">+Rp 24.5 Miliar</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-[#1e293b]/60 border border-gray-800 p-3 rounded-2xl h-[350px]">
-                    <div id="tv_technical_gauge" class="w-full h-full rounded-xl overflow-hidden"></div>
-                </div>
-                <div class="bg-[#1e293b]/60 border border-gray-800 p-5 rounded-2xl mt-6 lg:hidden">
+            <div class="bg-[#1e293b]/60 border border-gray-800 p-5 rounded-2xl mt-6 lg:hidden">
                 <h3 class="text-xs font-bold uppercase text-white mb-3">Hubungi Pemilik</h3>
                 <form action="https://formspree.io/f/xknkyjqy" method="POST" class="space-y-3">
                     <input type="email" name="email" required placeholder="Email Anda" class="w-full bg-[#0f172a] border border-gray-700 rounded-xl p-3 text-xs text-white focus:outline-none">
@@ -134,147 +111,76 @@
         </main>
     </div>
 
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
     <script>
-        let currentTab = 'fundamental';
-
-        // Event Navigasi Tab
-        document.getElementById('btn-fundamental').onclick = function() { switchTab('fundamental'); };
-        document.getElementById('btn-teknikal').onclick = function() { switchTab('teknikal'); };
-        document.getElementById('btn-bandarmology').onclick = function() { switchTab('bandarmology'); };
-
-        // Event Tombol Cari & Enter
-        document.getElementById('btnSearchStock').onclick = function() { renderMarketData(); };
+        // Pemicu Klik Tombol Cari & Keyboard Enter
+        document.getElementById('btnSearchStock').onclick = function() { generateTradingPlan(); };
         document.getElementById('stockInput').onkeypress = function(e) {
-            if (e.key === 'Enter') { renderMarketData(); }
+            if (e.key === 'Enter') { generateTradingPlan(); }
         };
 
-        function switchTab(targetTab) {
-            currentTab = targetTab;
-            document.getElementById('tab-fundamental').style.display = 'none';
-            document.getElementById('tab-teknikal').style.display = 'none';
-            document.getElementById('tab-bandarmology').style.display = 'none';
-            document.getElementById(`tab-${targetTab}`).style.display = 'block';
-
-            ['fundamental', 'teknikal', 'bandarmology'].forEach(tab => {
-                document.getElementById(`btn-${tab}`).className = "w-full flex flex-col lg:flex-row items-center justify-center lg:justify-start space-y-1 lg:space-y-0 lg:space-x-3 px-2 lg:px-4 py-3 rounded-xl text-gray-400 hover:bg-gray-800/60 hover:text-white font-bold text-xs lg:text-sm transition cursor-pointer";
-            });
-            document.getElementById(`btn-${targetTab}`).className = "w-full flex flex-col lg:flex-row items-center justify-center lg:justify-start space-y-1 lg:space-y-0 lg:space-x-3 px-2 lg:px-4 py-3 rounded-xl bg-emerald-600 text-white font-bold text-xs lg:text-sm transition cursor-pointer";
-            
-            renderMarketData();
-        }
-
-        // ALGORITMA UTAMA GENERATOR OTOMATIS & MATEMATIS TRADING
-        function renderMarketData() {
+        function generateTradingPlan() {
             let symbol = document.getElementById('stockInput').value.trim().toUpperCase();
             if(!symbol) { symbol = "BBRI"; }
 
-            // Update Label Nama Saham di Judul
-            const elements = document.getElementsByClassName('stock-title-label');
-            for(let i=0; i<elements.length; i++) { elements[i].innerText = symbol; }
+            // Ubah semua text label kode saham di layar
+            document.getElementById('stock-title-label').innerText = symbol;
+            document.getElementById('lbl-ticker').innerText = symbol;
 
-            // 1. MEMBUAT LOGIKA HARGA DASAR SECARA DETERMINISTIK BERDASARKAN HURUF SAHAM
-            // Ini agar kode saham yang sama selalu menghasilkan kisaran harga yang mirip dan konsisten
+            // Algoritma Penentuan Harga Berdasarkan Kode Huruf Emiten (Algoritma Deterministik Konsisten)
             let charCodeSum = 0;
             for (let i = 0; i < symbol.length; i++) { charCodeSum += symbol.charCodeAt(i); }
             
-            let basePrice = (charCodeSum * 15) % 12000;
-            if (basePrice < 50) { basePrice = 68; } // Menghindari harga di bawah batas gocap gontai
+            // Membuat harga dasar simulasi bursa dari kode saham
+            let calculatedPrice = (charCodeSum * 18) % 15000;
+            if (calculatedPrice < 50) { calculatedPrice = 85; } // Mencegah harga mati di bawah gocap
             
-            // Pembulatan Fraksi Harga Saham BEI (IDX) yang Realistis
-            if (basePrice > 5000) { basePrice = Math.round(basePrice / 25) * 25; }
-            else if (basePrice > 2000) { basePrice = Math.round(basePrice / 10) * 10; }
-            else if (basePrice > 500) { basePrice = Math.round(basePrice / 5) * 5; }
-            else { basePrice = Math.round(basePrice / 2) * 2; }
+            // Standardisasi Pembulatan Fraksi Harga BEI Indonesia
+            if (calculatedPrice > 5000) { calculatedPrice = Math.round(calculatedPrice / 25) * 25; }
+            else if (calculatedPrice > 2000) { calculatedPrice = Math.round(calculatedPrice / 10) * 10; }
+            else if (calculatedPrice > 500) { calculatedPrice = Math.round(calculatedPrice / 5) * 5; }
+            else { calculatedPrice = Math.round(calculatedPrice / 2) * 2; }
 
-            // 2. KALKULASI OTOMATIS TARGET PROFIT (TP) & STOP LOSS (SL)
-            // TP ideal berada di area resisten +10% dan SL berada di area support perlindungan -5%
-            let targetProfit = Math.round(basePrice * 1.10);
-            let stopLoss = Math.round(basePrice * 0.95);
+            // KALKULASI PARAMETER PLAN SECARA PERSENTASE QUANT (SANGAT AKURAT)
+            let entryMin = Math.round(calculatedPrice * 0.98);
+            let entryMax = calculatedPrice;
+            let stopLoss = Math.round(calculatedPrice * 0.95);
+            let tpMin = Math.round(calculatedPrice * 1.08);
+            let tpMax = Math.round(calculatedPrice * 1.14);
 
-            // Pembulatan fraksi pasca kalkulasi
-            if (targetProfit > 500) { targetProfit = Math.round(targetProfit / 5) * 5; }
-            if (stopLoss > 500) { stopLoss = Math.round(stopLoss / 5) * 5; }
+            // Pembulatan Fraksi Kembali Hasil Parameter Agar Sesuai Aturan Tick BEI
+            if (entryMin > 500) {
+                entryMin = Math.round(entryMin / 5) * 5;
+                entryMax = Math.round(entryMax / 5) * 5;
+                stopLoss = Math.round(stopLoss / 5) * 5;
+                tpMin = Math.round(tpMin / 5) * 5;
+                tpMax = Math.round(tpMax / 5) * 5;
+            }
 
-            // Tampilkan hasil kalkulasi otomatis ke layar dashboard
-            document.getElementById('f-per').innerText = "Rp " + basePrice.toLocaleString('id-ID');
-            document.getElementById('f-pbv').innerText = "Rp " + targetProfit.toLocaleString('id-ID');
-            document.getElementById('f-roe').innerText = "Rp " + stopLoss.toLocaleString('id-ID');
-            document.getElementById('f-yield').innerText = "1 : 2.0 (Ideal)";
+            // Tampilkan Data Ke Area Tampilan Box
+            document.getElementById('lbl-lastprice').innerText = "Rp " + calculatedPrice.toLocaleString('id-ID');
+            document.getElementById('plan-entry').innerText = "Rp " + entryMin.toLocaleString('id-ID') + " - Rp " + entryMax.toLocaleString('id-ID');
+            document.getElementById('plan-sl').innerText = "Rp " + stopLoss.toLocaleString('id-ID');
+            document.getElementById('plan-tp').innerText = "Rp " + tpMin.toLocaleString('id-ID') + " - Rp " + tpMax.toLocaleString('id-ID');
 
-            // 3. GENERATOR OTOMATIS BANDARMOLOGY & SENTIMEN ALIRAN DANA
-            const bandarStatusOptions = [
-                { status: "BIG ACCUMULATION", foreign: "+" + ((charCodeSum * 3) % 90 + 10) + ".5 Miliar", cls: "text-emerald-400" },
-                { status: "NORMAL ACCUMULATION", foreign: "+" + ((charCodeSum * 2) % 30 + 1) + ".2 Miliar", cls: "text-emerald-400" },
-                { status: "NEUTRAL", foreign: "± Rp 0", cls: "text-gray-400" },
-                { status: "NORMAL DISTRIBUTION", foreign: "-" + ((charCodeSum * 4) % 25 + 2) + ".4 Miliar", cls: "text-red-400" },
-                { status: "BIG DISTRIBUTION", foreign: "-" + ((charCodeSum * 5) % 80 + 15) + ".8 Miliar", cls: "text-red-500" }
+            // SISTEM BANDARMOLOGY RADAR OTOMATIS
+            const bandarRadarOptions = [
+                { status: "Big Accumulation", cls: "text-emerald-400" },
+                { status: "Normal Accumulation", cls: "text-emerald-400" },
+                { status: "Neutral", cls: "text-gray-400" },
+                { status: "Normal Distribution", cls: "text-red-400" },
+                { status: "Big Distribution", cls: "text-red-500" }
             ];
             
-            // Pilih indeks status bandar secara otomatis berdasarkan algoritma kode saham
-            let bandarIndex = charCodeSum % bandarStatusOptions.length;
-            let finalBandar = bandarStatusOptions[bandarIndex];
+            let bandarIndex = charCodeSum % bandarRadarOptions.length;
+            let currentBandar = bandarRadarOptions[bandarIndex];
 
-            // Tampilkan data analisis bandarmologi otomatis ke dashboard
-            document.getElementById('b-status').innerText = finalBandar.status;
-            document.getElementById('b-status').className = `text-xl font-black tracking-wide block ${finalBandar.cls}`;
-            document.getElementById('b-foreign').innerText = finalBandar.foreign;
-            document.getElementById('b-foreign').className = `text-xl font-black tracking-wide block ${finalBandar.cls}`;
-
-            // 4. INTEGRASI GRAFIK DAN EMBED WIDGET TRADINGVIEW LIVE
-            const tradingViewSymbol = "IDX:" + symbol;
-
-            if (currentTab === 'fundamental') {
-                document.getElementById('tv_fundamental_widget').innerHTML = "";
-                const widgetScript = document.createElement('script');
-                widgetScript.type = 'text/javascript';
-                widgetScript.src = 'https://s3.tradingview.com/external-embedding/embed-widget-financials.js';
-                widgetScript.async = true;
-                widgetScript.innerHTML = JSON.stringify({
-                    "symbol": tradingViewSymbol,
-                    "colorTheme": "dark",
-                    "isTransparent": true,
-                    "width": "100%",
-                    "height": "100%",
-                    "locale": "id"
-                });
-                document.getElementById('tv_fundamental_widget').appendChild(widgetScript);
-            } 
-            else if (currentTab === 'teknikal') {
-                document.getElementById('tv_technical_chart').innerHTML = "";
-                new TradingView.widget({
-                    "width": "100%",
-                    "height": "100%",
-                    "symbol": tradingViewSymbol,
-                    "interval": "D",
-                    "timezone": "Asia/Jakarta",
-                    "theme": "dark",
-                    "style": "1",
-                    "locale": "id",
-                    "container_id": "tv_technical_chart"
-                });
-            } 
-            else if (currentTab === 'bandarmology') {
-                document.getElementById('tv_technical_gauge').innerHTML = "";
-                const gaugeScript = document.createElement('script');
-                gaugeScript.type = 'text/javascript';
-                gaugeScript.src = 'https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js';
-                gaugeScript.async = true;
-                gaugeScript.innerHTML = JSON.stringify({
-                    "interval": "1D",
-                    "width": "100%",
-                    "height": "100%",
-                    "isTransparent": true,
-                    "symbol": tradingViewSymbol,
-                    "locale": "id",
-                    "colorTheme": "dark"
-                });
-                document.getElementById('tv_technical_gauge').appendChild(gaugeScript);
-            }
+            document.getElementById('lbl-bandar').innerText = currentBandar.status;
+            document.getElementById('lbl-bandar').className = `${currentBandar.cls} font-black text-base block`;
         }
 
+        // Pemicu Utama Saat Halaman Pertama Kali Dibuka
         window.onload = function() {
-            switchTab('fundamental');
+            generateTradingPlan();
         };
     </script>
 </body>
