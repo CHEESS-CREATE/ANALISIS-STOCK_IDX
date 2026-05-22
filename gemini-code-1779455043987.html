@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisis Saham Pro - Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans">
+
+    <nav class="bg-gray-800 border-b border-gray-700 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-chart-line text-emerald-400 text-2xl"></i>
+            <span class="text-xl font-bold tracking-wider text-white">SAHAM<span class="text-emerald-400">PRO</span></span>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span id="userStatus" class="bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full border border-amber-500/30">Mode: Tamu (Belum Berlangganan)</span>
+            <button onclick="toggleAdminPanel()" class="bg-gray-700 hover:bg-gray-600 text-sm px-4 py-2 rounded-lg transition">
+                <i class="fa-solid fa-user-gear mr-2"></i>Simulasi Admin
+            </button>
+        </div>
+    </nav>
+
+    <div class="flex min-h-screen">
+        <aside class="w-64 bg-gray-800/50 p-6 border-r border-gray-700/50">
+            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Menu Analisis</p>
+            <nav class="space-y-2">
+                <button onclick="switchTab('fundamental')" id="btn-fundamental" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-emerald-600 text-white font-medium transition text-left">
+                    <i class="fa-solid fa-file-invoice-dollar w-5"></i>
+                    <span>Fundamental</span>
+                </button>
+                <button onclick="switchTab('teknikal')" id="btn-teknikal" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-400 hover:bg-gray-800 hover:text-white transition text-left">
+                    <i class="fa-solid fa-chart-candlestick w-5"></i>
+                    <span>Teknikal (Premium)</span>
+                </button>
+                <button onclick="switchTab('bandarmology')" id="btn-bandarmology" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-400 hover:bg-gray-800 hover:text-white transition text-left">
+                    <i class="fa-solid fa-users-viewfinder w-5"></i>
+                    <span>Bandarmology (Premium)</span>
+                </button>
+            </nav>
+        </aside>
+
+        <main class="flex-1 p-8">
+            
+            <div id="tab-fundamental" class="tab-content block animate-fade-in">
+                <h1 class="text-3xl font-bold mb-2 text-white">Analisis Fundamental</h1>
+                <p class="text-gray-400 mb-6">Analisis kondisi finansial dan valuasi emiten (Free Access).</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
+                        <p class="text-sm text-gray-400">Rata-rata PER Industri</p>
+                        <p class="text-2xl font-bold text-white mt-1">12.5x</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
+                        <p class="text-sm text-gray-400">Emiten Undervalued (PBV < 1)</p>
+                        <p class="text-2xl font-bold text-emerald-400 mt-1">42 Perusahaan</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
+                        <p class="text-sm text-gray-400">Update Laporan Keuangan</p>
+                        <p class="text-2xl font-bold text-blue-400 mt-1">Q1 2026</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden">
+                    <div class="px-6 py-4 bg-gray-800/50 border-b border-gray-700 font-semibold text-white">Top 3 Saham Prospek Cerah (Contoh Data)</div>
+                    <div class="p-6 text-gray-300">
+                        <p>Di sini kamu bisa memasukkan tabel rasio keuangan seperti ROE, DER, dan Dividend Yield emiten pilihanmu.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-teknikal" class="tab-content hidden">
+                <h1 class="text-3xl font-bold mb-2 text-white">Analisis Teknikal</h1>
+                <p class="text-gray-400 mb-6">Sinyal Chart, Moving Average, dan RSI Real-time.</p>
+                
+                <div id="lock-teknikal" class="bg-gray-800/80 backdrop-blur-sm border border-amber-500/30 p-12 rounded-3xl text-center max-w-2xl mx-auto my-12">
+                    <i class="fa-solid fa-lock text-5xl text-amber-400 mb-4"></i>
+                    <h3 class="text-2xl font-bold text-white mb-2">Konten Ini Terkunci</h3>
+                    <p class="text-gray-400 mb-6">Akun Anda belum disetujui atau masa langganan Anda telah habis. Silakan hubungi Admin untuk aktivasi.</p>
+                    <a href="https://wa.me/628xxxxxxxxxx" target="_blank" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-6 py-3 rounded-xl transition">
+                        Hubungi Admin via WhatsApp
+                    </a>
+                </div>
+
+                <div id="content-teknikal" class="hidden space-y-6">
+                    <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
+                        <h3 class="text-xl font-bold text-emerald-400 mb-4">Sinyal Bullish Reversal Hari Ini</h3>
+                        <p class="text-gray-300">Menampilkan grafik TradingView atau anotasi area *Support & Resistance* serta indikator MA20/MA50.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-bandarmology" class="tab-content hidden">
+                <h1 class="text-3xl font-bold mb-2 text-white">Analisis Bandarmology</h1>
+                <p class="text-gray-400 mb-6">Mendeteksi akumulasi dan distribusi broker raksasa.</p>
+                
+                <div id="lock-bandarmology" class="bg-gray-800/80 backdrop-blur-sm border border-amber-500/30 p-12 rounded-3xl text-center max-w-2xl mx-auto my-12">
+                    <i class="fa-solid fa-lock text-5xl text-amber-400 mb-4"></i>
+                    <h3 class="text-2xl font-bold text-white mb-2">Konten Ini Terkunci</h3>
+                    <p class="text-gray-400 mb-6">Halaman ini memerlukan status langganan aktif.</p>
+                </div>
+
+                <div id="content-bandarmology" class="hidden">
+                    <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
+                        <h3 class="text-xl font-bold text-red-400 mb-4">Top Net Buy Asing & Broker Summary</h3>
+                        <p class="text-gray-300">Data akumulasi bandar lokal (ZP, CC, AK) dan asing dapat diletakkan di bagian ini.</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <div id="adminPanel" class="fixed right-0 top-0 h-full w-80 bg-gray-800 border-l border-gray-700 shadow-2xl p-6 transform translate-x-full transition-transform duration-300 z-50">
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-gears mr-2 text-emerald-400"></i>Kontrol Akses</h3>
+            <button onclick="toggleAdminPanel()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+        </div>
+        <div class="space-y-6">
+            <div class="bg-gray-900 p-4 rounded-xl border border-gray-700">
+                <p class="text-xs font-semibold text-gray-400 mb-2">UBAH STATUS AKSES USER (Simulasi)</p>
+                <div class="space-y-2">
+                    <button onclick="changeAccess('free')" class="w-full text-left bg-gray-800 hover:bg-gray-700 p-3 rounded-lg text-sm flex justify-between items-center">
+                        <span>1. Non-Aktif / Tamu</span>
+                        <i class="fa-solid fa-circle text-xs text-red-500"></i>
+                    </button>
+                    <button onclick="changeAccess('premium')" class="w-full text-left bg-gray-800 hover:bg-gray-700 p-3 rounded-lg text-sm flex justify-between items-center">
+                        <span>2. Aktif (Premium)</span>
+                        <i class="fa-solid fa-circle text-xs text-emerald-500"></i>
+                    </button>
+                </div>
+            </div>
+            <p class="text-xs text-gray-400 leading-relaxed">
+                <strong class="text-amber-400">Catatan Pengembang:</strong> Di web aslinya nanti, tombol simulasi ini diganti dengan sistem login (Firebase Auth). Kamu bisa meng-approve email pengguna lewat dashboard Firebase secara remote.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Status user awal (Secara default tidak bisa akses konten berbayar)
+        let currentUser = {
+            isApproved: false,
+            subscriptionActive: false
+        };
+
+        // Fungsi berpindah Tab Menu
+        function switchTab(tabName) {
+            // Sembunyikan semua tab content
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            // Tampilkan tab yang dipilih
+            document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+
+            // Reset gaya tombol sidebar
+            document.querySelectorAll('aside nav button').forEach(btn => {
+                btn.classList.remove('bg-emerald-600', 'text-white', 'font-medium');
+                btn.classList.add('text-gray-400', 'hover:bg-gray-800', 'hover:text-white');
+            });
+            // Aktifkan tombol yang diklik
+            document.getElementById(`btn-${tabName}`).classList.add('bg-emerald-600', 'text-white', 'font-medium');
+            document.getElementById(`btn-${tabName}`).classList.remove('text-gray-400', 'hover:bg-gray-800');
+
+            // Cek proteksi konten
+            checkGatekeeper(tabName);
+        }
+
+        // Fungsi Penjaga Gerbang Konten Premium
+        function checkGatekeeper(tabName) {
+            if (tabName === 'teknikal' || tabName === 'bandarmology') {
+                if (currentUser.isApproved && currentUser.subscriptionActive) {
+                    // Jika diizinkan: buka konten, sembunyikan gembok
+                    document.getElementById(`lock-${tabName}`).classList.add('hidden');
+                    document.getElementById(`content-${tabName}`).classList.remove('hidden');
+                } else {
+                    // Jika ditolak: kunci konten, sembunyikan data asli
+                    document.getElementById(`lock-${tabName}`).classList.remove('hidden');
+                    document.getElementById(`content-${tabName}`).classList.add('hidden');
+                }
+            }
+        }
+
+        // Fungsi Simulasi untuk Mengubah Hak Akses dari Admin Panel
+        function changeAccess(type) {
+            const statusLabel = document.getElementById('userStatus');
+            if (type === 'premium') {
+                currentUser.isApproved = true;
+                currentUser.subscriptionActive = true;
+                statusLabel.innerText = "Mode: Berlangganan Aktif ✅";
+                statusLabel.className = "bg-emerald-500/20 text-emerald-400 text-xs px-3 py-1 rounded-full border border-emerald-500/30";
+            } else {
+                currentUser.isApproved = false;
+                currentUser.subscriptionActive = false;
+                statusLabel.innerText = "Mode: Tamu (Belum Berlangganan)";
+                statusLabel.className = "bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full border border-amber-500/30";
+            }
+            // Refresh tampilan tab yang sedang aktif saat ini
+            const activeTabButton = document.querySelector('aside nav button.bg-emerald-600');
+            const currentTabName = activeTabButton.id.replace('btn-', '');
+            checkGatekeeper(currentTabName);
+        }
+
+        // Buka-tutup panel simulasi admin
+        function toggleAdminPanel() {
+            const panel = document.getElementById('adminPanel');
+            panel.classList.toggle('translate-x-full');
+        }
+    </script>
+</body>
+</html>
