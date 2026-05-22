@@ -29,13 +29,13 @@
                 <div class="bg-[#1e293b]/50 border border-gray-800 p-8 rounded-3xl">
                     <h3 class="text-lg font-bold text-white">Paket Bulanan</h3>
                     <div class="text-3xl font-black text-white my-4">Rp 150.000</div>
-                    <button onclick="orderViaWhatsApp('Bulanan', 'Rp 150.000')" class="w-full mt-6 bg-slate-800 hover:bg-slate-700 py-3 rounded-xl font-bold text-white">Beli Paket</button>
+                    <button onclick="orderViaWhatsApp('Bulanan', 'Rp 150.000')" class="w-full mt-6 bg-slate-800 hover:bg-slate-700 py-3 rounded-xl font-bold text-white transition">Beli Paket</button>
                 </div>
                 <div class="bg-[#1e293b] border-2 border-emerald-500 p-8 rounded-3xl relative">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-slate-950 text-[10px] font-black px-3 py-0.5 rounded-full">TERLARIS</span>
                     <h3 class="text-lg font-bold text-white">Paket Tahunan</h3>
                     <div class="text-3xl font-black text-white my-4">Rp 1.200.000</div>
-                    <button onclick="orderViaWhatsApp('Tahunan', 'Rp 1.200.000')" class="w-full mt-6 bg-emerald-600 hover:bg-emerald-500 py-3 rounded-xl font-extrabold text-white">Beli Paket</button>
+                    <button onclick="orderViaWhatsApp('Tahunan', 'Rp 1.200.000')" class="w-full mt-6 bg-emerald-600 hover:bg-emerald-500 py-3 rounded-xl font-extrabold text-white transition">Beli Paket</button>
                 </div>
             </div>
         </section>
@@ -65,7 +65,7 @@
     </div>
 
     <script>
-        // GANTI PIN INI SESUAI KEINGINAN ANDA
+        // --- SETTING PIN RAHASIA ---
         const OWNER_PIN = "071227"; 
 
         function switchView(target) {
@@ -85,7 +85,7 @@
 
         function orderViaWhatsApp(paket, harga) {
             const noWA = "6287832727925";
-            const pesan = `Halo Admin, saya ingin beli ${paket} seharga ${harga}.`;
+            const pesan = `Halo Admin SAHAMPRO,\n\nSaya ingin berlangganan Paket Premium.\n\n*Detail Order*:\n• Paket: ${paket}\n• Harga: ${harga}\n\nMohon petunjuk transfer pembayarannya.`;
             window.open(`https://api.whatsapp.com/send?phone=${noWA}&text=${encodeURIComponent(pesan)}`, '_blank');
         }
 
