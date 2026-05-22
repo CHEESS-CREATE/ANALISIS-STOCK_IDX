@@ -16,15 +16,35 @@
     <div id="public-landing-view" class="block min-h-screen">
         <nav class="border-b border-gray-800 bg-[#1e293b]/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4 flex justify-between items-center max-w-7xl mx-auto w-full">
             <span class="text-xl font-black text-white">SAHAM<span class="text-emerald-400">PRO</span></span>
-            <a href="#pricing" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-5 py-2 rounded-xl text-sm transition">Mulai Langganan</a>
+            <a href="#pricing" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-5 py-2 rounded-xl text-sm transition">Mulai Sekarang</a>
         </nav>
         
         <header class="max-w-5xl mx-auto px-6 pt-20 text-center">
-            <h1 class="text-4xl md:text-6xl font-black text-white">Ikuti Jejak <span class="text-emerald-400">Big Player</span></h1>
-            <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Dashboard pintar untuk menyaring emiten undervalued dan memantau bandar.</p>
+            <h1 class="text-4xl md:text-6xl font-black text-white leading-tight">Ikuti Jejak <span class="text-emerald-400">Big Player</span></h1>
+            <p class="text-gray-400 mt-6 max-w-2xl mx-auto text-lg">Hentikan menebak-nebak harga. Gunakan data fundamental & bandarmologi untuk hasilkan cuan konsisten.</p>
         </header>
 
-        <section id="pricing" class="max-w-4xl mx-auto px-6 py-16">
+        <section class="max-w-4xl mx-auto px-6 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="bg-[#1e293b]/30 p-6 rounded-2xl border border-gray-800">
+                    <i class="fa-solid fa-microchip text-emerald-400 text-3xl mb-4"></i>
+                    <h4 class="font-bold text-white mb-2">Real-Time Screener</h4>
+                    <p class="text-xs text-gray-400">Deteksi pergerakan bandar secara instan sebelum harga terbang.</p>
+                </div>
+                <div class="bg-[#1e293b]/30 p-6 rounded-2xl border border-gray-800">
+                    <i class="fa-solid fa-chart-line text-emerald-400 text-3xl mb-4"></i>
+                    <h4 class="font-bold text-white mb-2">Data Fundamental</h4>
+                    <p class="text-xs text-gray-400">Analisa valuasi emiten dengan akurasi data keuangan terkini.</p>
+                </div>
+                <div class="bg-[#1e293b]/30 p-6 rounded-2xl border border-gray-800">
+                    <i class="fa-solid fa-shield-halved text-emerald-400 text-3xl mb-4"></i>
+                    <h4 class="font-bold text-white mb-2">Rencana Trading</h4>
+                    <p class="text-xs text-gray-400">Area entry, stop loss, dan TP otomatis untuk meminimalkan risiko.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="max-w-4xl mx-auto px-6 pb-20">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="bg-[#1e293b]/50 border border-gray-800 p-8 rounded-3xl">
                     <h3 class="text-lg font-bold text-white">Paket Bulanan</h3>
@@ -32,7 +52,7 @@
                     <button onclick="orderViaWhatsApp('Bulanan', 'Rp 150.000')" class="w-full mt-6 bg-slate-800 hover:bg-slate-700 py-3 rounded-xl font-bold text-white transition">Beli Paket</button>
                 </div>
                 <div class="bg-[#1e293b] border-2 border-emerald-500 p-8 rounded-3xl relative">
-                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-slate-950 text-[10px] font-black px-3 py-0.5 rounded-full">TERLARIS</span>
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-slate-950 text-[10px] font-black px-3 py-0.5 rounded-full">PALING HEMAT</span>
                     <h3 class="text-lg font-bold text-white">Paket Tahunan</h3>
                     <div class="text-3xl font-black text-white my-4">Rp 1.200.000</div>
                     <button onclick="orderViaWhatsApp('Tahunan', 'Rp 1.200.000')" class="w-full mt-6 bg-emerald-600 hover:bg-emerald-500 py-3 rounded-xl font-extrabold text-white transition">Beli Paket</button>
@@ -54,18 +74,17 @@
                 <button onclick="switchView('public')" class="bg-slate-800 text-white px-4 py-2 rounded-lg text-xs">Keluar</button>
             </div>
             <div class="flex gap-4">
-                <input type="text" id="stockInput" placeholder="Masukkan Ticker (Contoh: BBRI)" class="bg-slate-800 text-white p-3 rounded-xl w-full uppercase border border-gray-700">
+                <input type="text" id="stockInput" placeholder="Masukkan Ticker..." class="bg-slate-800 text-white p-3 rounded-xl w-full uppercase border border-gray-700">
                 <button onclick="updateDashboardData()" class="bg-emerald-600 text-white px-6 rounded-xl font-bold">Cari</button>
             </div>
             <div class="mt-8 p-6 bg-[#1e293b] rounded-3xl border border-gray-700">
                 <h1 id="stock-title-label" class="text-2xl font-black text-emerald-400 uppercase">--</h1>
-                <div id="lbl-status-bandar" class="text-lg font-bold text-white mt-4">Masukkan kode saham di atas...</div>
+                <div id="lbl-status-bandar" class="text-lg font-bold text-white mt-4">Masukkan kode saham untuk data real-time...</div>
             </div>
         </div>
     </div>
 
     <script>
-        // --- SETTING PIN RAHASIA ---
         const OWNER_PIN = "071227"; 
 
         function switchView(target) {
