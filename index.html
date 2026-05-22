@@ -9,11 +9,24 @@
 </head>
 <body class="bg-gray-900 text-gray-100 font-sans">
 
-    <nav class="bg-gray-800 border-b border-gray-700 px-6 py-4 flex justify-between items-center">
+    <nav class="bg-gray-800 border-b border-gray-700 px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
         <div class="flex items-center space-x-3">
             <i class="fa-solid fa-chart-line text-emerald-400 text-2xl"></i>
             <span class="text-xl font-bold tracking-wider text-white">SAHAM<span class="text-emerald-400">PRO</span></span>
         </div>
+        
+        <div class="flex items-center bg-gray-700 rounded-xl px-3 py-1.5 border border-gray-600 w-full max-w-xs">
+            <i class="fa-solid fa-magnifying-glass text-gray-400 mr-2"></i>
+            <select id="stockSelector" onchange="updateAllAnalyticData()" class="bg-transparent text-white font-bold text-lg focus:outline-none w-full cursor-pointer">
+                <option value="BBRI" class="bg-gray-800 text-white">BBRI (Bank Rakyat Indonesia)</option>
+                <option value="BBCA" class="bg-gray-800 text-white">BBCA (Bank Central Asia)</option>
+                <option value="TLKM" class="bg-gray-800 text-white">TLKM (Telkom Indonesia)</option>
+                <option value="GOTO" class="bg-gray-800 text-white">GOTO (GoTo Gojek Tokopedia)</option>
+                <option value="ASII" class="bg-gray-800 text-white">ASII (Astra International)</option>
+                <option value="BMRI" class="bg-gray-800 text-white">BMRI (Bank Mandiri)</option>
+            </select>
+        </div>
+
         <div class="flex items-center space-x-4">
             <span id="userStatus" class="bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full border border-amber-500/30">Mode: Tamu (Belum Berlangganan)</span>
             <button onclick="toggleAdminPanel()" class="bg-gray-700 hover:bg-gray-600 text-sm px-4 py-2 rounded-lg transition">
@@ -22,8 +35,8 @@
         </div>
     </nav>
 
-    <div class="flex min-h-screen">
-        <aside class="w-64 bg-gray-800/50 p-6 border-r border-gray-700/50">
+    <div class="flex min-h-screen flex-col md:flex-row">
+        <aside class="w-full md:w-64 bg-gray-800/50 p-6 border-r border-gray-700/50">
             <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Menu Analisis</p>
             <nav class="space-y-2">
                 <button onclick="switchTab('fundamental')" id="btn-fundamental" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-emerald-600 text-white font-medium transition text-left">
@@ -41,59 +54,60 @@
             </nav>
         </aside>
 
-        <main class="flex-1 p-8">
+        <main class="flex-1 p-4 md:p-8">
             
-            <div id="tab-fundamental" class="tab-content block animate-fade-in">
-                <h1 class="text-3xl font-bold mb-2 text-white">Analisis Fundamental</h1>
-                <p class="text-gray-400 mb-6">Analisis kondisi finansial dan valuasi emiten (Free Access).</p>
+            <div id="tab-fundamental" class="tab-content block">
+                <h1 class="text-3xl font-bold mb-1 text-white">Analisis Fundamental <span class="text-emerald-400 stock-label">BBRI</span></h1>
+                <p class="text-gray-400 mb-6">Rasio finansial utama berdasarkan laporan keuangan terakhir.</p>
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
                     <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
-                        <p class="text-sm text-gray-400">Rata-rata PER Industri</p>
-                        <p class="text-2xl font-bold text-white mt-1">12.5x</p>
+                        <p class="text-sm text-gray-400">P/E Ratio (PER)</p>
+                        <p id="fun-per" class="text-2xl font-bold text-white mt-1">11.4x</p>
                     </div>
                     <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
-                        <p class="text-sm text-gray-400">Emiten Undervalued (PBV < 1)</p>
-                        <p class="text-2xl font-bold text-emerald-400 mt-1">42 Perusahaan</p>
+                        <p class="text-sm text-gray-400">Price to Book Value (PBV)</p>
+                        <p id="fun-pbv" class="text-2xl font-bold text-white mt-1">2.1x</p>
                     </div>
                     <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
-                        <p class="text-sm text-gray-400">Update Laporan Keuangan</p>
-                        <p class="text-2xl font-bold text-blue-400 mt-1">Q1 2026</p>
+                        <p class="text-sm text-gray-400">ROE (Return on Equity)</p>
+                        <p id="fun-roe" class="text-2xl font-bold text-emerald-400 mt-1">18.5%</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
+                        <p class="text-sm text-gray-400">Dividend Yield</p>
+                        <p id="fun-yield" class="text-2xl font-bold text-blue-400 mt-1">6.2%</p>
                     </div>
                 </div>
 
-                <div class="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden">
-                    <div class="px-6 py-4 bg-gray-800/50 border-b border-gray-700 font-semibold text-white">Top 3 Saham Prospek Cerah (Contoh Data)</div>
-                    <div class="p-6 text-gray-300">
-                        <p>Di sini kamu bisa memasukkan tabel rasio keuangan seperti ROE, DER, dan Dividend Yield emiten pilihanmu.</p>
-                    </div>
+                <div class="bg-gray-800 p-4 rounded-2xl border border-gray-700 mb-6">
+                    <h3 class="text-sm font-semibold text-gray-400 mb-3">Informasi Pasar Live TradingView:</h3>
+                    <div id="tradingview-ticker"></div>
                 </div>
             </div>
 
             <div id="tab-teknikal" class="tab-content hidden">
-                <h1 class="text-3xl font-bold mb-2 text-white">Analisis Teknikal</h1>
-                <p class="text-gray-400 mb-6">Sinyal Chart, Moving Average, dan RSI Real-time.</p>
+                <h1 class="text-3xl font-bold mb-1 text-white">Analisis Teknikal <span class="text-emerald-400 stock-label">BBRI</span></h1>
+                <p class="text-gray-400 mb-6">Live Interactive Chart & Technical Indicators.</p>
                 
                 <div id="lock-teknikal" class="bg-gray-800/80 backdrop-blur-sm border border-amber-500/30 p-12 rounded-3xl text-center max-w-2xl mx-auto my-12">
                     <i class="fa-solid fa-lock text-5xl text-amber-400 mb-4"></i>
                     <h3 class="text-2xl font-bold text-white mb-2">Konten Ini Terkunci</h3>
                     <p class="text-gray-400 mb-6">Akun Anda belum disetujui atau masa langganan Anda telah habis. Silakan hubungi Admin untuk aktivasi.</p>
-                    <a href="https://wa.me/628xxxxxxxxxx" target="_blank" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-6 py-3 rounded-xl transition">
+                    <a href="#" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-6 py-3 rounded-xl transition">
                         Hubungi Admin via WhatsApp
                     </a>
                 </div>
 
                 <div id="content-teknikal" class="hidden space-y-6">
-                    <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
-                        <h3 class="text-xl font-bold text-emerald-400 mb-4">Sinyal Bullish Reversal Hari Ini</h3>
-                        <p class="text-gray-300">Menampilkan grafik TradingView atau anotasi area *Support & Resistance* serta indikator MA20/MA50.</p>
+                    <div class="bg-gray-800 p-4 rounded-2xl border border-gray-700 h-[500px]">
+                        <div id="tradingview_chart_container" class="h-full w-full"></div>
                     </div>
                 </div>
             </div>
 
             <div id="tab-bandarmology" class="tab-content hidden">
-                <h1 class="text-3xl font-bold mb-2 text-white">Analisis Bandarmology</h1>
-                <p class="text-gray-400 mb-6">Mendeteksi akumulasi dan distribusi broker raksasa.</p>
+                <h1 class="text-3xl font-bold mb-1 text-white">Analisis Bandarmology <span class="text-emerald-400 stock-label">BBRI</span></h1>
+                <p class="text-gray-400 mb-6">Mendeteksi aktivitas akumulasi dan distribusi broker summary.</p>
                 
                 <div id="lock-bandarmology" class="bg-gray-800/80 backdrop-blur-sm border border-amber-500/30 p-12 rounded-3xl text-center max-w-2xl mx-auto my-12">
                     <i class="fa-solid fa-lock text-5xl text-amber-400 mb-4"></i>
@@ -101,10 +115,18 @@
                     <p class="text-gray-400 mb-6">Halaman ini memerlukan status langganan aktif.</p>
                 </div>
 
-                <div id="content-bandarmology" class="hidden">
+                <div id="content-bandarmology" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
-                        <h3 class="text-xl font-bold text-red-400 mb-4">Top Net Buy Asing & Broker Summary</h3>
-                        <p class="text-gray-300">Data akumulasi bandar lokal (ZP, CC, AK) dan asing dapat diletakkan di bagian ini.</p>
+                        <h3 class="text-lg font-bold text-emerald-400 mb-3"><i class="fa-solid fa-building-columns mr-2"></i>Status Bandar (1 Hari Terakhir)</h3>
+                        <div class="p-4 bg-gray-900 rounded-xl border border-gray-700 text-center">
+                            <span id="bandar-status" class="text-2xl font-extrabold text-emerald-400 uppercase">BIG ACCUMULATION</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-3">*Simulasi kalkulasi top 3 buyer vs top 3 seller broker summary.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
+                        <h3 class="text-lg font-bold text-blue-400 mb-3"><i class="fa-solid fa-globe mr-2"></i>Net Foreign (Asing)</h3>
+                        <p class="text-sm text-gray-300 mb-2">Pergerakan modal asing pada saham <span class="stock-label font-bold">BBRI</span>:</p>
+                        <div id="bandar-foreign" class="text-xl font-bold text-emerald-400">+Rp 42.5 Miliar (Net Buy)</div>
                     </div>
                 </div>
             </div>
@@ -131,55 +153,105 @@
                     </button>
                 </div>
             </div>
-            <p class="text-xs text-gray-400 leading-relaxed">
-                <strong class="text-amber-400">Catatan Pengembang:</strong> Di web aslinya nanti, tombol simulasi ini diganti dengan sistem login (Firebase Auth). Kamu bisa meng-approve email pengguna lewat dashboard Firebase secara remote.
-            </p>
         </div>
     </div>
 
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
     <script>
-        // Status user awal (Secara default tidak bisa akses konten berbayar)
-        let currentUser = {
-            isApproved: false,
-            subscriptionActive: false
+        // Database Simulasi Data Fundamental & Bandarmologi Saham IDX (Bisa kamu ganti angkanya sendiri)
+        const stockDatabase = {
+            BBRI: { per: "11.4x", pbv: "2.1x", roe: "18.5%", yield: "6.2%", bandar: "Big Accumulation", foreign: "+Rp 42.5 Miliar (Net Buy)", color: "text-emerald-400" },
+            BBCA: { per: "24.1x", pbv: "4.8x", roe: "20.2%", yield: "2.8%", bandar: "Normal Accumulation", foreign: "+Rp 112.1 Miliar (Net Buy)", color: "text-emerald-400" },
+            TLKM: { per: "14.2x", pbv: "2.5x", roe: "17.1%", yield: "5.1%", bandar: "Distribution", foreign: "-Rp 14.8 Miliar (Net Sell)", color: "text-red-400" },
+            GOTO: { per: "Negative", pbv: "0.6x", roe: "-8.4%", yield: "0%", bandar: "Big Distribution", foreign: "-Rp 5.2 Miliar (Net Sell)", color: "text-red-500" },
+            ASII: { per: "8.1x", pbv: "1.1x", roe: "13.9%", yield: "7.5%", bandar: "Neutral", foreign: "+Rp 1.2 Miliar (Net Buy)", color: "text-gray-300" },
+            BMRI: { per: "10.8x", pbv: "2.2x", roe: "19.1%", yield: "5.8%", bandar: "Big Accumulation", foreign: "+Rp 89.4 Miliar (Net Buy)", color: "text-emerald-400" }
         };
 
-        // Fungsi berpindah Tab Menu
+        let currentUser = { isApproved: false, subscriptionActive: false };
+        let currentTab = 'fundamental';
+
+        // Fungsi ketika user mengganti kode Saham di bagian atas website
+        function updateAllAnalyticData() {
+            const ticker = document.getElementById('stockSelector').value;
+            
+            // 1. Update semua text label kode saham di layar
+            document.querySelectorAll('.stock-label').forEach(el => el.innerText = ticker);
+
+            // 2. Ambil data dari database fundamental lokal & pasang ke layar
+            const data = stockDatabase[ticker];
+            if(data) {
+                document.getElementById('fun-per').innerText = data.per;
+                document.getElementById('fun-pbv').innerText = data.pbv;
+                document.getElementById('fun-roe').innerText = data.roe;
+                document.getElementById('fun-yield').innerText = data.yield;
+                
+                document.getElementById('bandar-status').innerText = data.bandar;
+                document.getElementById('bandar-status').className = `text-2xl font-extrabold uppercase ${data.color}`;
+                document.getElementById('bandar-foreign').innerText = data.foreign;
+                document.getElementById('bandar-foreign').className = `text-xl font-bold ${data.color}`;
+            }
+
+            // 3. Update Chart Real-time Teknikal TradingView (Hanya jika user premium & di tab teknikal)
+            if(currentUser.subscriptionActive && currentTab === 'teknikal') {
+                loadTradingViewChart(ticker);
+            }
+        }
+
+        // Fungsi menggambar Chart Interaktif TradingView secara Real-time
+        function loadTradingViewChart(tickerCode) {
+            // Ditambahkan prefiks 'IDX:' agar sistem tahu ini saham Indonesia
+            new TradingView.widget({
+                "width": "100%",
+                "height": "100%",
+                "symbol": "IDX:" + tickerCode,
+                "interval": "D",
+                "timezone": "Asia/Jakarta",
+                "theme": "dark",
+                "style": "1",
+                "locale": "id",
+                "toolbar_bg": "#f1f3f6",
+                "enable_publishing": false,
+                "hide_side_toolbar": false,
+                "allow_symbol_change": false,
+                "container_id": "tradingview_chart_container"
+            });
+        }
+
+        // Kontrol Perpindahan Halaman Tab
         function switchTab(tabName) {
-            // Sembunyikan semua tab content
+            currentTab = tabName;
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            // Tampilkan tab yang dipilih
             document.getElementById(`tab-${tabName}`).classList.remove('hidden');
 
-            // Reset gaya tombol sidebar
             document.querySelectorAll('aside nav button').forEach(btn => {
                 btn.classList.remove('bg-emerald-600', 'text-white', 'font-medium');
                 btn.classList.add('text-gray-400', 'hover:bg-gray-800', 'hover:text-white');
             });
-            // Aktifkan tombol yang diklik
             document.getElementById(`btn-${tabName}`).classList.add('bg-emerald-600', 'text-white', 'font-medium');
             document.getElementById(`btn-${tabName}`).classList.remove('text-gray-400', 'hover:bg-gray-800');
 
-            // Cek proteksi konten
             checkGatekeeper(tabName);
         }
 
-        // Fungsi Penjaga Gerbang Konten Premium
         function checkGatekeeper(tabName) {
+            const ticker = document.getElementById('stockSelector').value;
             if (tabName === 'teknikal' || tabName === 'bandarmology') {
                 if (currentUser.isApproved && currentUser.subscriptionActive) {
-                    // Jika diizinkan: buka konten, sembunyikan gembok
                     document.getElementById(`lock-${tabName}`).classList.add('hidden');
                     document.getElementById(`content-${tabName}`).classList.remove('hidden');
+                    if(tabName === 'teknikal') {
+                        // Jalankan fungsi chart jika disetujui
+                        setTimeout(() => { loadTradingViewChart(ticker); }, 100);
+                    }
                 } else {
-                    // Jika ditolak: kunci konten, sembunyikan data asli
                     document.getElementById(`lock-${tabName}`).classList.remove('hidden');
                     document.getElementById(`content-${tabName}`).classList.add('hidden');
                 }
             }
         }
 
-        // Fungsi Simulasi untuk Mengubah Hak Akses dari Admin Panel
+        // Simulasi Admin panel
         function changeAccess(type) {
             const statusLabel = document.getElementById('userStatus');
             if (type === 'premium') {
@@ -193,17 +265,17 @@
                 statusLabel.innerText = "Mode: Tamu (Belum Berlangganan)";
                 statusLabel.className = "bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full border border-amber-500/30";
             }
-            // Refresh tampilan tab yang sedang aktif saat ini
-            const activeTabButton = document.querySelector('aside nav button.bg-emerald-600');
-            const currentTabName = activeTabButton.id.replace('btn-', '');
-            checkGatekeeper(currentTabName);
+            checkGatekeeper(currentTab);
         }
 
-        // Buka-tutup panel simulasi admin
         function toggleAdminPanel() {
-            const panel = document.getElementById('adminPanel');
-            panel.classList.toggle('translate-x-full');
+            document.getElementById('adminPanel').classList.toggle('translate-x-full');
         }
+
+        // Jalankan sinkronisasi data pertama kali saat web dimuat
+        window.onload = function() {
+            updateAllAnalyticData();
+        };
     </script>
 </body>
-</html>
+                </html>
